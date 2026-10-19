@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body>
+<title>Rutas Comerciales Cantabria</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra superior con pestañas; cada vista es una superficie de trabajo (rejilla semanal, lista, mapa) sobre fondo neutro frío. */
+:root{
+  --bg:#f3f5f6; --surface:#ffffff; --sunk:#e8ecee; --line:#d3dadd; --fg:#16222a; --muted:#5b6b74;
+  --accent:#0c5f73; --accent-fg:#ffffff; --accent-soft:#d9ecf0;
+  --ok:#2f7d4a; --warn:#a86500; --bad:#b4372f; --warn-soft:#fbefd9; --bad-soft:#f8e1de;
+  --land:#e4e9e3; --land-line:#b9c4bc; --sea:#e6eff3;
+  --r1:#2a78d6; --r2:#eb6834; --r3:#1baf7a; --r4:#eda100; --r5:#e87ba4; --r6:#6250d6;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1619; --surface:#172126; --sunk:#111a1e; --line:#2a383f; --fg:#e3eaed; --muted:#93a4ac;
+  --accent:#5cc0d4; --accent-fg:#06262e; --accent-soft:#163a43;
+  --ok:#6cc48a; --warn:#e3a54a; --bad:#ef8178; --warn-soft:#3a2d14; --bad-soft:#3d1f1c;
+  --land:#1d2a27; --land-line:#34463f; --sea:#121c21;
+  --r1:#3987e5; --r2:#d95926; --r3:#199e70; --r4:#c98500; --r5:#d55181; --r6:#9085e9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1619; --surface:#172126; --sunk:#111a1e; --line:#2a383f; --fg:#e3eaed; --muted:#93a4ac;
+  --accent:#5cc0d4; --accent-fg:#06262e; --accent-soft:#163a43;
+  --ok:#6cc48a; --warn:#e3a54a; --bad:#ef8178; --warn-soft:#3a2d14; --bad-soft:#3d1f1c;
+  --land:#1d2a27; --land-line:#34463f; --sea:#121c21;
+  --r1:#3987e5; --r2:#d95926; --r3:#199e70; --r4:#c98500; --r5:#d55181; --r6:#9085e9; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1320px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header .bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-block:10px}
+.brand{display:flex;flex-direction:column;line-height:1.1;margin-right:auto}
+.brand b{font-family:var(--f-display);font-size:20px;font-weight:700;letter-spacing:.01em}
+.brand span{font-size:12px;color:var(--muted)}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs button{font:600 15px var(--f-display);letter-spacing:.02em;border:0;background:transparent;color:var(--muted);padding:8px 12px;border-radius:6px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--accent-soft);color:var(--fg)}
+nav.tabs button:hover{color:var(--fg)}
+main{padding-block:18px 48px}
+h2{font:700 22px var(--f-display);margin:0;text-wrap:balance}
+h3{font:600 16px var(--f-display);margin:0;letter-spacing:.01em}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
+.btn{font:600 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 12px;border-radius:6px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{padding:4px 8px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:default}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 8px;max-width:100%}
+input[type=number]{width:80px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+label.f > *{color:var(--fg);font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi .v{font:700 26px var(--f-display);font-variant-numeric:tabular-nums}
+.kpi .l{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.ok{color:var(--ok)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.scroll-x{overflow-x:auto}
+/* Rejilla semanal */
+.week{display:grid;grid-template-columns:150px repeat(5,minmax(130px,1fr));gap:6px;min-width:820px}
+.week .hd{font:600 13px var(--f-display);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:4px 6px}
+.week .rep{display:flex;align-items:center;gap:8px;font-weight:600;padding:6px}
+.cell{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column;gap:4px;min-height:92px}
+.cell:hover{border-color:var(--muted)}
+.cell[aria-pressed="true"]{outline:2px solid var(--accent);border-color:var(--accent)}
+.cell .big{font:700 20px var(--f-display);font-variant-numeric:tabular-nums}
+.cell .meta{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cell.empty{opacity:.6}
+.bar-load{height:4px;border-radius:2px;background:var(--sunk);overflow:hidden}
+.bar-load i{display:block;height:100%;background:var(--accent)}
+.bar-load i.over{background:var(--bad)}
+/* Detalle día */
+.detail{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+@media (max-width:900px){.detail{grid-template-columns:1fr}}
+.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.stop{display:grid;grid-template-columns:54px 26px minmax(0,1fr);gap:8px;padding:9px 0;border-top:1px solid var(--line)}
+.stop:first-child{border-top:0}
+.stop .t{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.stop .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-display);color:#fff}
+.stop .nm{font-weight:600}
+.stop .ad{font-size:12px;color:var(--muted)}
+.stop .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.stop.pause{grid-template-columns:54px minmax(0,1fr);color:var(--muted);font-size:12px}
+.legline{font-size:11px;color:var(--muted);font-family:var(--f-mono);padding-left:88px}
+/* Mapa */
+.map svg{width:100%;max-width:980px;margin:0 auto;height:auto;display:block;background:var(--sea);border-radius:8px}
+.map .land{fill:var(--land);stroke:var(--land-line);stroke-width:1}
+.map text{font:600 10px var(--f-body);fill:var(--muted)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px}
+/* Tabla clientes */
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font:600 12px var(--f-display);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface)}
+tbody tr:hover{background:var(--sunk)}
+td select{padding:3px 4px;font-size:13px}
+.tbl{max-height:70vh;overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(440px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:20;overflow:auto;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) 18px;box-shadow:-12px 0 30px rgba(0,0,0,.12)}
+.drawer .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scrim{position:fixed;inset:0;background:rgba(10,20,25,.35);z-index:19}
+.notice{padding:10px 12px;border-radius:8px;background:var(--warn-soft);color:var(--fg);border:1px solid var(--line)}
+.empty-state{padding:40px 20px;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:8px;z-index:30;font-weight:600;font-size:13px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+.cmp td.num,.cmp th.num{text-align:right}
+.days{display:flex;gap:4px}
+.days label{display:flex;align-items:center;gap:2px;font-size:12px}
+/* Navegación: pantallas principales + gestión */
+header .bar{gap:12px 20px}
+nav.tabs.main button{font-size:17px;padding:8px 16px}
+nav.tabs.gest{align-items:center;padding-left:14px;border-left:1px solid var(--line)}
+nav.tabs.gest .gl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+nav.tabs.gest button{font-size:14px;padding:6px 10px}
+@media (max-width:640px){nav.tabs.gest{border-left:0;padding-left:0;width:100%}}
+/* Tira de días */
+.daybar{display:flex;align-items:center;gap:6px}
+.days-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;flex:1;min-width:0}
+.day{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:8px 12px;border:1px solid var(--line);background:var(--surface);border-radius:10px;cursor:pointer;color:var(--fg);font:inherit;text-align:left;min-width:0}
+.day .dn .sh{display:none}
+.day .dn{font:600 13px var(--f-display);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.day .dd{font:700 28px/1.05 var(--f-display);font-variant-numeric:tabular-nums}
+.day .dm{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.day.today .dm{color:var(--accent);font-weight:600}
+.day[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.day[aria-pressed="true"] .dn,.day[aria-pressed="true"] .dm{color:var(--accent-fg)}
+@media (max-width:520px){.day .dn .lo{display:none}.day .dn .sh{display:inline}.day{padding:6px 6px;align-items:center}.day .dn{font-size:11px}.day .dd{font-size:22px}.day .dm{display:none}}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chipbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:5px 12px;font:600 13px var(--f-body);cursor:pointer}
+.chipbtn[aria-pressed="true"]{border-color:var(--fg);background:var(--sunk)}
+/* Gantt de jornada */
+.gantt,.wk-grid{display:flex;flex-direction:column;gap:6px}
+.g-row{display:grid;grid-template-columns:130px minmax(0,1fr) 92px;align-items:center;gap:10px;background:none;border:0;padding:4px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:6px}
+.g-row:hover:not(.axis){background:var(--sunk)}
+.g-row.axis{cursor:default;padding-top:0}
+.g-row.wk{grid-template-columns:70px minmax(0,1fr) 110px;padding:2px 0}
+.g-name{display:flex;align-items:center;gap:8px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-end{text-align:right;color:var(--muted)}
+.g-empty{font-size:12px;color:var(--muted);padding-left:4px}
+.jb-track{position:relative;height:30px;background:var(--sunk);border-radius:6px}
+.jb.sm .jb-track{height:16px;border-radius:4px}
+.seg{position:absolute;top:3px;bottom:3px;display:grid;place-items:center;font:700 11px var(--f-display);color:#fff;overflow:hidden;border-radius:4px}
+.jb.sm .seg{top:2px;bottom:2px;border-radius:2px}
+.seg.visita{background:var(--c);box-shadow:0 0 0 1px var(--surface)}
+.seg.viaje{background:color-mix(in srgb,var(--c) 28%,transparent);top:12px;bottom:12px;border-radius:2px}
+.jb.sm .seg.viaje{top:6px;bottom:6px}
+.seg.pausa{background:repeating-linear-gradient(45deg,var(--muted) 0 2px,transparent 2px 6px);opacity:.55}
+.jb-fin{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--bad)}
+.jb-axis{position:relative;height:16px}
+.jb-axis span{position:absolute;transform:translateX(-50%);font:500 11px var(--f-mono);color:var(--muted)}
+.lg{display:inline-block;width:16px;height:10px;border-radius:2px}
+.lg.visita{background:var(--fg)}
+.lg.viaje{height:4px;background:color-mix(in srgb,var(--fg) 35%,transparent)}
+.lg.pausa{background:repeating-linear-gradient(45deg,var(--muted) 0 2px,transparent 2px 5px)}
+.lg.fin{width:0;height:12px;border-left:2px dashed var(--bad)}
+@media (max-width:640px){.jb-axis span.odd{display:none}.seg.visita{font-size:0}.g-row{grid-template-columns:86px minmax(0,1fr) 44px;gap:6px}.g-row.wk{grid-template-columns:52px minmax(0,1fr)}.g-row.wk .g-end{display:none}.legend{gap:8px}}
+.wk-rep{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.wk-title{display:flex;align-items:center;gap:8px;padding:4px 0}
+/* Tarjetas por comercial */
+.cards{display:grid;gap:14px;align-items:start}
+.cards.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1000px){.cards.c3{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.cards.c2,.cards.c3{grid-template-columns:1fr}}
+.rcard{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0;scroll-margin-top:90px}
+.rcard header{display:flex;align-items:center;gap:8px}
+.rcard h3{font-size:19px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stats div{background:var(--sunk);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column}
+.stats b{font:700 20px var(--f-display);font-variant-numeric:tabular-nums}
+.stats b.bad{color:var(--bad)}
+.stats span{font-size:11px;color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.tl{display:grid;grid-template-columns:44px 22px minmax(0,1fr);gap:8px;align-items:start;position:relative;padding-bottom:6px}
+.tl::before{content:"";position:absolute;left:62px;top:20px;bottom:-2px;width:2px;background:color-mix(in srgb,var(--c) 35%,transparent)}
+.tl.end::before{display:none}
+.tl .t{font-size:12px;padding-top:3px;color:var(--muted)}
+.pip{width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--c);margin:4px 5px 0;position:relative;z-index:1}
+.num-pip{width:22px;height:22px;margin:0;background:var(--c);border:2px solid var(--surface);display:grid;place-items:center;color:#fff;font:700 11px var(--f-display)}
+.tl.pause{font-size:12px;color:var(--muted)}
+.tl.pause .pip{border-style:dashed;border-color:var(--muted)}
+.tl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;background:none;border:0;padding:2px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%}
+.tl-head .muted{font-size:12px}
+.tl.open .tl-head b{text-decoration:underline;text-underline-offset:3px}
+.tl-more{display:flex;flex-direction:column;gap:4px;padding:4px 0 8px}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.calls{border-top:1px solid var(--line);padding-top:10px}
+.calls h4{margin:0 0 6px;font:600 13px var(--f-display);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.calls ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.calls li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;justify-content:space-between}
+.map text.pin{fill:#fff;font:700 9px var(--f-display)}
+.kpi .v small{font-size:16px;color:var(--muted)}
+.hbar{display:flex;align-items:center;gap:8px;min-width:160px}
+.hbar i{display:block;height:10px;border-radius:0 4px 4px 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><b>Rutas Comerciales</b></div>
+    <nav class="tabs main" aria-label="Pantallas principales">
+      <button data-tab="dia" aria-selected="true">Día</button>
+      <button data-tab="semana" aria-selected="false">Semana</button>
+    </nav>
+    <nav class="tabs gest" aria-label="Gestión">
+      <span class="gl">Gestión</span>
+      <button data-tab="clientes" aria-selected="false">Clientes</button>
+      <button data-tab="reparto" aria-selected="false">Reparto</button>
+      <button data-tab="ajustes" aria-selected="false">Ajustes</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="conn" class="notice" hidden></div>
+  <section id="v-dia" class="stack"></section>
+  <section id="v-semana" class="stack" hidden></section>
+  <section id="v-clientes" class="stack" hidden></section>
+  <section id="v-reparto" class="stack" hidden></section>
+  <section id="v-ajustes" class="stack" hidden></section>
+</main>
+<div id="drawer-root"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ===== Motor de rutas (sin dependencias) =====
+const Engine = (() => {
+  const R = 6371;
+  function hav(a, b) {
+    const toR = Math.PI / 180;
+    const dLat = (b.lat - a.lat) * toR, dLng = (b.lng - a.lng) * toR;
+    const s = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * toR) * Math.cos(b.lat * toR) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(s));
+  }
+  // km por carretera estimados
+  function roadKm(a, b, cfg) {
+    const d = hav(a, b);
+    if (d < 0.05) return 0.4; // mismo punto (misma calle/CP): desplazamiento mínimo
+    return d * cfg.factorCarretera;
+  }
+  // velocidad media según longitud del tramo (urbano → autovía)
+  function speed(km, cfg) {
+    const pts = [[0, cfg.velUrbana], [10, (cfg.velUrbana + cfg.velCarretera) / 2], [30, cfg.velCarretera], [60, cfg.velAutovia]];
+    if (km >= 60) return cfg.velAutovia;
+    for (let i = 1; i < pts.length; i++) if (km <= pts[i][0]) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i];
+      return y0 + (y1 - y0) * (km - x0) / (x1 - x0);
+    }
+    return cfg.velAutovia;
+  }
+  function legMin(a, b, cfg) {
+    const km = roadKm(a, b, cfg);
+    return { km, min: km / speed(km, cfg) * 60 * cfg.factorTrafico };
+  }
+  // ---- TSP: vecino más cercano + 2-opt + or-opt (ida y vuelta a la nave) ----
+  function buildMatrix(pts, cfg) {
+    const n = pts.length, M = Array.from({ length: n }, () => new Float64Array(n));
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { const m = legMin(pts[i], pts[j], cfg).min; M[i][j] = M[j][i] = m; }
+    return M;
+  }
+  function tourCost(t, M) { let c = 0; for (let i = 0; i < t.length - 1; i++) c += M[t[i]][t[i + 1]]; return c; }
+  function solveTour(pts, cfg) {
+    // pts[0] = nave
+    const n = pts.length;
+    if (n <= 1) return [0, 0];
+    const M = buildMatrix(pts, cfg);
+    const left = new Set(); for (let i = 1; i < n; i++) left.add(i);
+    const t = [0]; let cur = 0;
+    while (left.size) { let best = -1, bd = Infinity; for (const j of left) if (M[cur][j] < bd) { bd = M[cur][j]; best = j; } t.push(best); left.delete(best); cur = best; }
+    t.push(0);
+    let improved = true, guard = 0;
+    while (improved && guard++ < 200) {
+      improved = false;
+      for (let i = 1; i < t.length - 2; i++) for (let k = i + 1; k < t.length - 1; k++) {
+        const d = M[t[i - 1]][t[k]] + M[t[i]][t[k + 1]] - M[t[i - 1]][t[i]] - M[t[k]][t[k + 1]];
+        if (d < -1e-6) { t.splice(i, k - i + 1, ...t.slice(i, k + 1).reverse()); improved = true; }
+      }
+      // or-opt: mover segmentos de 1-3 paradas
+      for (let len = 1; len <= 3; len++) for (let i = 1; i + len < t.length; i++) {
+        const seg = t.slice(i, i + len), prev = t[i - 1], next = t[i + len];
+        const rem = M[prev][seg[0]] + M[seg[len - 1]][next] - M[prev][next];
+        const rest = t.slice(0, i).concat(t.slice(i + len));
+        for (let j = 0; j < rest.length - 1; j++) {
+          if (j === i - 1) continue;
+          const add = M[rest[j]][seg[0]] + M[seg[len - 1]][rest[j + 1]] - M[rest[j]][rest[j + 1]];
+          if (add - rem < -1e-6) { rest.splice(j + 1, 0, ...seg); t.length = 0; t.push(...rest); improved = true; break; }
+        }
+      }
+    }
+    return t;
+  }
+  function hm(s) { const [h, m] = s.split(':').map(Number); return h * 60 + m; }
+  function fmt(min) { min = Math.round(min); const h = Math.floor(min / 60), m = min % 60; return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'); }
+  // Ruta de un día con horario
+  function dayRoute(stops, cfg) {
+    const depot = { lat: cfg.nave.lat, lng: cfg.nave.lng };
+    const pts = [depot, ...stops];
+    const order = solveTour(pts, cfg);
+    let t = hm(cfg.salida), km = 0, drive = 0, lunchDone = !cfg.comida.activa;
+    const lunchAt = hm(cfg.comida.inicio), lunchDur = cfg.comida.minutos;
+    const seq = [];
+    for (let i = 1; i < order.length; i++) {
+      const a = pts[order[i - 1]], b = pts[order[i]];
+      const leg = order[i] === 0 && order[i - 1] === 0 ? { km: 0, min: 0 } : legMin(a, b, cfg);
+      // comida: si al llegar a la siguiente parada se pasa la hora, se hace la pausa antes
+      if (!lunchDone && t + leg.min >= lunchAt && order[i] !== 0) { t = Math.max(t, lunchAt) + lunchDur; lunchDone = true; seq.push({ pausa: true, hora: fmt(t - lunchDur), min: lunchDur }); }
+      t += leg.min; km += leg.km; drive += leg.min;
+      if (order[i] === 0) break;
+      const s = stops[order[i] - 1];
+      const llegada = t;
+      t += s.dur + cfg.minAparcar;
+      seq.push({ stop: s, llegada: fmt(llegada), salida: fmt(t), km: leg.km, min: leg.min });
+    }
+    const fin = t;
+    return { seq, km, drive, fin: stops.length ? fmt(fin) : null, finMin: stops.length ? fin : hm(cfg.salida), total: stops.length ? fin - hm(cfg.salida) : 0, exceso: stops.length ? Math.max(0, fin - hm(cfg.fin)) : 0 };
+  }
+  // ---- Semana ISO ----
+  function isoWeek(d) {
+    const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const day = x.getUTCDay() || 7; x.setUTCDate(x.getUTCDate() + 4 - day);
+    const y0 = new Date(Date.UTC(x.getUTCFullYear(), 0, 1));
+    return { year: x.getUTCFullYear(), week: Math.ceil(((x - y0) / 864e5 + 1) / 7) };
+  }
+  function weekKey(d) { const w = isoWeek(d); return w.year + '-W' + String(w.week).padStart(2, '0'); }
+  function weekSerial(d) { // número de semana continuo (para alternar quincenal/mensual sin saltos de año)
+    const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const day = x.getUTCDay() || 7; x.setUTCDate(x.getUTCDate() - day + 1);
+    return Math.floor((x - Date.UTC(2024, 0, 1)) / (7 * 864e5));
+  }
+  function mondayOf(d) { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); const day = x.getDay() || 7; x.setDate(x.getDate() - day + 1); return x; }
+  // ¿Qué toca a un cliente en una semana? 'visita' | 'llamada' | null
+  function plannedType(c, serial) {
+    if (c.activo === false) return null;
+    const f = c.frecuencia || 1;
+    if (f === 0) return 'llamada';
+    if (((serial + (c.desfase || 0)) % f + f) % f === 0) return 'visita';
+    return c.llamarEntreVisitas === false ? null : 'llamada';
+  }
+  // Plan de la semana aplicando cambios puntuales
+  function weekPlan(clients, cfg, serial, overrides) {
+    overrides = overrides || {};
+    const byId = new Map(clients.map(c => [String(c.id), c]));
+    const slots = {}; // `${rep}|${day}` -> {visitas:[], llamadas:[]}
+    const key = (r, d) => r + '|' + d;
+    for (const rep of cfg.comerciales) for (let d = 1; d <= 5; d++) slots[key(rep.id, d)] = { visitas: [], llamadas: [] };
+    const unassigned = [];
+    for (const c of clients) {
+      const o = overrides[String(c.id)] || {};
+      let tipo = o.tipo !== undefined ? o.tipo : plannedType(c, serial);
+      if (!tipo || tipo === 'omitir') continue;
+      const rep = o.comercial || c.comercial, day = o.dia || c.dia;
+      const s = slots[key(rep, day)];
+      if (!s) { unassigned.push(c); continue; }
+      (tipo === 'visita' ? s.visitas : s.llamadas).push(c);
+    }
+    return { slots, unassigned };
+  }
+  // ---- Reparto automático (territorios + días) ----
+  function workload(c, cfg) { const f = c.frecuencia || 1; return f === 0 ? cfg.durLlamada : (c.dur || cfg.durVisita) / f; }
+  function bearing(c, cfg) { return Math.atan2(c.lat - cfg.nave.lat, (c.lng - cfg.nave.lng) * Math.cos(cfg.nave.lat * Math.PI / 180)); }
+  function splitBalanced(items, k, wf) {
+    const tot = items.reduce((s, x) => s + wf(x), 0); const groups = Array.from({ length: k }, () => []);
+    let acc = 0, g = 0;
+    for (const x of items) { const w = wf(x); if (g < k - 1 && acc + w / 2 > tot * (g + 1) / k) g++; groups[g].push(x); acc += w; }
+    return groups;
+  }
+  function centroidCost(groups, cfg) {
+    let c = 0;
+    for (const g of groups) { if (!g.length) continue; const W = g.reduce((s, x) => s + (x.w || 1), 0); const m = { lat: g.reduce((s, x) => s + x.lat * (x.w || 1), 0) / W, lng: g.reduce((s, x) => s + x.lng * (x.w || 1), 0) / W }; for (const x of g) c += hav(x, m) * (x.w || 1); }
+    return c;
+  }
+  function sweep(items, k, cfg, wf) {
+    wf = wf || (x => workload(x, cfg));
+    if (!items.length) return Array.from({ length: k }, () => []);
+    const s = items.slice().sort((a, b) => bearing(a, cfg) - bearing(b, cfg));
+    let best = null, bc = Infinity;
+    for (let off = 0; off < s.length; off++) {
+      const rot = s.slice(off).concat(s.slice(0, off));
+      const g = splitBalanced(rot, k, wf);
+      const c = centroidCost(g, cfg);
+      if (c < bc) { bc = c; best = g; }
+    }
+    return best;
+  }
+  // coste de un día: viaje (como si se visitaran todos) + carga media de visitas
+  function dayCost(list, cfg) {
+    const visit = list.filter(c => (c.frecuencia || 1) !== 0);
+    if (!visit.length) return { cost: 0, travel: 0, load: list.reduce((s, c) => s + workload(c, cfg), 0) };
+    const pts = [{ lat: cfg.nave.lat, lng: cfg.nave.lng }, ...visit];
+    const t = solveTour(pts, cfg); const M = buildMatrix(pts, cfg);
+    // el viaje se pondera por la probabilidad media de visita del día
+    const p = visit.reduce((s, c) => s + 1 / (c.frecuencia || 1), 0) / visit.length;
+    const travel = tourCost(t, M) * (0.5 + 0.5 * p);
+    const load = list.reduce((s, c) => s + workload(c, cfg) + (1 / (c.frecuencia || 1)) * cfg.minAparcar, 0);
+    return { cost: travel + load, travel, load };
+  }
+  function closedOn(c, d) { return (c.cerrado || []).includes(d); }
+  function propose(clients, cfg, opts) {
+    opts = opts || {};
+    const reps = cfg.comerciales.map(r => r.id), K = reps.length, D = 5;
+    const nave = { lat: cfg.nave.lat, lng: cfg.nave.lng };
+    const active = clients.filter(c => c.activo !== false && isFinite(c.lat) && (c.frecuencia ?? 1) !== -1);
+    const respect = opts.respetarFijados !== false;
+    const fixed = active.filter(c => respect && c.fijado && reps.includes(c.comercial) && c.dia);
+    const free = active.filter(c => !fixed.includes(c));
+    const stopsPerDay = 7;
+    const w = c => workload(c, cfg) + (1 / Math.max(1, c.frecuencia || 1)) * (cfg.minAparcar + 2 * legMin(nave, c, cfg).min / stopsPerDay);
+    // 1) átomos: clientes en el mismo punto (misma población / CP) van juntos
+    const totalW = active.reduce((s, c) => s + w(c), 0), dayCap = totalW / (K * D);
+    const groups = new Map();
+    for (const c of free) { const k = c.lat.toFixed(3) + ',' + c.lng.toFixed(3); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(c); }
+    let atoms = [];
+    for (const g of groups.values()) {
+      const tot = g.reduce((s, c) => s + w(c), 0), parts = Math.max(1, Math.ceil(tot / (dayCap * 0.95)));
+      const per = Math.ceil(g.length / parts);
+      for (let i = 0; i < g.length; i += per) { const m = g.slice(i, i + per); atoms.push({ members: m, lat: m[0].lat, lng: m[0].lng, w: m.reduce((s, c) => s + w(c), 0), closed: [...new Set(m.flatMap(c => c.cerrado || []))] }); }
+    }
+    // 2) territorios por barrido angular desde la nave (equilibrado por carga)
+    const terr = sweep(atoms, K, cfg, a => a.w);
+    // 3) días: el más lejano primero, se llena con los más cercanos hasta la capacidad
+    const slotAtoms = new Map(); const sk = (r, d) => r + '|' + d;
+    for (const r of reps) for (let d = 1; d <= D; d++) slotAtoms.set(sk(r, d), []);
+    terr.forEach((g, i) => {
+      const left = g.slice(); const tw = g.reduce((s, a) => s + a.w, 0) + fixed.filter(c => c.comercial === reps[i]).reduce((s, c) => s + w(c), 0);
+      const cap = tw / D; const dayGroups = [];
+      while (left.length && dayGroups.length < D) {
+        left.sort((a, b) => hav(nave, b) - hav(nave, a));
+        const seed = left.shift(); const grp = [seed]; let load = seed.w;
+        while (left.length && load < cap * 0.97) {
+          let bi = -1, bd = Infinity;
+          for (let j = 0; j < left.length; j++) { const d = Math.min(...grp.map(x => hav(x, left[j]))) + 0.3 * hav(seed, left[j]); if (d < bd) { bd = d; bi = j; } }
+          if (load + left[bi].w > cap * 1.15 && load > cap * 0.6) break;
+          load += left[bi].w; grp.push(left.splice(bi, 1)[0]);
+        }
+        dayGroups.push(grp);
+      }
+      // sobrantes al día más cercano
+      for (const a of left) { let bj = 0, bd = Infinity; dayGroups.forEach((gr, j) => { const d = Math.min(...gr.map(x => hav(x, a))); if (d < bd) { bd = d; bj = j; } }); dayGroups[bj].push(a); }
+      // ordenar días por ángulo (rotación lógica de la semana)
+      dayGroups.sort((A, B) => bearing(A[0], cfg) - bearing(B[0], cfg));
+      dayGroups.forEach((gr, j) => slotAtoms.get(sk(reps[i], j + 1)).push(...gr));
+    });
+    // días de cierre: mover átomo entero a un día abierto del mismo comercial
+    for (const [k, l] of slotAtoms) {
+      const [r, d] = k.split('|');
+      for (const a of l.slice()) if (a.closed.includes(+d)) {
+        for (let nd = 1; nd <= D; nd++) if (!a.closed.includes(nd)) { l.splice(l.indexOf(a), 1); slotAtoms.get(sk(r, nd)).push(a); break; }
+      }
+    }
+    // 4) búsqueda local moviendo átomos
+    const fixedBySlot = new Map(); for (const k of slotAtoms.keys()) fixedBySlot.set(k, []);
+    for (const c of fixed) fixedBySlot.get(sk(c.comercial, c.dia))?.push(c);
+    const members = (k, l) => fixedBySlot.get(k).concat(...(l || slotAtoms.get(k)).map(a => a.members));
+    const costs = new Map(); for (const k of slotAtoms.keys()) costs.set(k, dayCost(members(k), cfg).cost);
+    const beta = opts.equilibrio ?? 0.006;
+    const objective = (cm) => { let s = 0, m = 0; for (const v of cm.values()) m += v; m /= cm.size; for (const v of cm.values()) s += v + beta * (v - m) ** 2; return s; };
+    let obj = objective(costs);
+    for (let it = 0; it < (opts.iteraciones ?? 4); it++) {
+      let moved = 0;
+      for (const from of slotAtoms.keys()) for (const a of slotAtoms.get(from).slice()) {
+        let best = null, bestObj = obj, bestCosts = null;
+        for (const to of slotAtoms.keys()) {
+          if (to === from) continue; const d = +to.split('|')[1]; if (a.closed.includes(d)) continue;
+          const dest = slotAtoms.get(to);
+          if (dest.length && !dest.some(x => hav(x, a) < 25)) continue;
+          const fl = slotAtoms.get(from).filter(x => x !== a), tl = dest.concat([a]);
+          const nc = new Map(costs); nc.set(from, dayCost(members(from, fl), cfg).cost); nc.set(to, dayCost(members(to, tl), cfg).cost);
+          const o = objective(nc);
+          if (o < bestObj - 0.5) { bestObj = o; best = { to, fl, tl }; bestCosts = nc; }
+        }
+        if (best) { slotAtoms.set(from, best.fl); slotAtoms.set(best.to, best.tl); for (const [k, v] of bestCosts) costs.set(k, v); obj = bestObj; moved++; }
+      }
+      if (!moved) break;
+    }
+    const assign = new Map();
+    for (const c of fixed) assign.set(c.id, { rep: c.comercial, day: c.dia });
+    for (const [k, l] of slotAtoms) { const [r, d] = k.split('|'); for (const a of l) for (const c of a.members) assign.set(c.id, { rep: r, day: +d }); }
+    // 5) desfases quincenal/mensual: repartir semanas dentro de cada día
+    const desfase = new Map();
+    for (const k of slotAtoms.keys()) {
+      const l = members(k); const byF = {};
+      for (const c of l) { const f = c.frecuencia || 1; if (f > 1) (byF[f] = byF[f] || []).push(c); }
+      for (const f in byF) byF[f].sort((a, b) => bearing(a, cfg) - bearing(b, cfg)).forEach((c, i) => desfase.set(c.id, c.fijado && respect ? (c.desfase || 0) : i % f));
+    }
+    return { assign, desfase, costs };
+  }
+  // Mejor hueco (comercial + día) para un cliente nuevo: menor coste añadido
+  function bestSlot(c, clients, cfg) {
+    let best = null;
+    for (const r of cfg.comerciales) for (let d = 1; d <= 5; d++) {
+      if (closedOn(c, d)) continue;
+      const l = clients.filter(x => x.id !== c.id && x.activo !== false && x.comercial === r.id && x.dia === d && isFinite(x.lat));
+      const before = dayCost(l, cfg).cost, after = dayCost(l.concat([c]), cfg).cost;
+      const score = (after - before) + 0.15 * before; // añade poco y en días menos cargados
+      if (!best || score < best.score) best = { rep: r.id, day: d, score, extra: after - before };
+    }
+    return best;
+  }
+  // Resumen semanal para un conjunto de asignaciones
+  function weekSummary(clients, cfg, serial, overrides) {
+    const { slots, unassigned } = weekPlan(clients, cfg, serial, overrides);
+    const out = {}; let km = 0, horas = 0, exceso = 0, visitas = 0, llamadas = 0;
+    for (const k in slots) {
+      const s = slots[k]; const r = dayRoute(s.visitas.map(c => ({ ...c, dur: c.dur || cfg.durVisita })), cfg);
+      r.llamadas = s.llamadas; r.visitas = s.visitas; out[k] = r;
+      km += r.km; horas += r.total / 60; exceso += r.exceso; visitas += s.visitas.length; llamadas += s.llamadas.length;
+    }
+    return { slots: out, km, horas, exceso, visitas, llamadas, unassigned };
+  }
+  return { bestSlot, hav, roadKm, legMin, solveTour, dayRoute, isoWeek, weekKey, weekSerial, mondayOf, plannedType, weekPlan, propose, weekSummary, fmt, hm, workload };
+})();
+
+
+</script>
+<script>
+const CP_TABLE = {"33554":[["Tresviso",43.2573,-4.668]],"39001":[["Santander",43.4647,-3.8088]],"39002":[["Santander",43.4608,-3.8088]],"39003":[["Santander",43.4645,-3.8016]],"39004":[["Santander",43.4646,-3.7918]],"39005":[["Santander",43.4703,-3.7889]],"39006":[["Santander",43.4672,-3.8072]],"39007":[["Santander",43.4621,-3.8219]],"39008":[["Santander",43.4587,-3.8191]],"39009":[["Santander",43.4543,-3.8167]],"39010":[["Santander",43.46,-3.8239]],"39011":[["Santander",43.4558,-3.8434]],"39012":[["Santander",43.4623,-3.8384]],"39070":[["Santander",43.4647,-3.8044]],"39071":[["Santander",43.4647,-3.8044]],"39080":[["Santander",43.4647,-3.8044]],"39100":[["Santa Cruz De Bezana",43.4437,-3.9032]],"39108":[["Mompia",43.4416,-3.9187],["Prezanes",43.4534,-3.9091],["Maoño",43.4185,-3.9138],["Azoños",43.4294,-3.9088]],"39110":[["Sancibrian (Soto De La Marina)",43.4651,-3.8976],["Soto De La Marina",43.4651,-3.8976]],"39120":[["Mortera",43.4451,-3.9279],["Liencres",43.4626,-3.9272]],"39130":[["Pedreña",43.4402,-3.7691],["Elechas",43.4251,-3.7739]],"39140":[["Somo",43.4519,-3.7372]],"39150":[["Suesa",43.4422,-3.7126],["Carriazo (Ribamontan Al Mar)",43.4466,-3.7081],["Castanedo",43.4506,-3.6959]],"39160":[["Langre",43.4733,-3.7076],["Loredo",43.4606,-3.7196],["Galizano",43.4684,-3.6716]],"39170":[["Bareyo",43.4681,-3.5986],["Ajo",43.4814,-3.6142]],"39180":[["Noja",43.4834,-3.5246]],"39191":[["Guemes",43.4559,-3.6353]],"39192":[["San Bartolome (Meruelo)",43.4541,-3.5769],["San Miguel De Meruelo",43.4621,-3.5888],["San Mames De Meruelo",43.4461,-3.565]],"39193":[["El Alvareo",43.4335,-3.5569],["Castillo",43.4627,-3.5433],["Rionegro",43.4698,-3.5493],["Soano",43.4802,-3.5437]],"39195":[["Arnuero",43.4734,-3.5678],["Isla",43.492,-3.5677],["Isla Playa",43.4956,-3.5479]],"39197":[["Cerecedas",43.4559,-3.5023],["Argoños",43.4577,-3.4858],["Santiuste",43.4539,-3.4873],["Ancillo",43.4499,-3.492],["Piedrahita",43.4585,-3.4853]],"39200":[["Matamorosa",42.9844,-4.1472],["Reinosa",42.9893,-4.1442]],"39210":[["Abiada",43.0185,-4.2905],["Barrio (Campoo De Suso)",43.0142,-4.2544],["Poblacion De Suso",42.987,-4.2378],["Brañavieja",43.0327,-4.3558],["Villar",43.0201,-4.2653],["Celada De Los Calderones",43.0158,-4.2524],["Hoz De Abiada",43.0187,-4.2818],["La Lomba",43.0103,-4.2845],["Mazandrero",43.0034,-4.2714],["Ormas",43.0295,-4.2354],["Espinilla",43.0215,-4.2258],["Naveda",43.0151,-4.2447],["Villacantid",43.0023,-4.206],["Proaño",43.0298,-4.2518],["Entrambasaguas (Campoo De Suso)",43.0142,-4.2544],["Soto (Campoo De Suso)",43.0142,-4.2544]],"39212":[["Camino (Campoo De Suso)",43.0192,-4.1619],["Serna, La (Campoo De Suso)",43.0192,-4.1619],["Morancas",43.0192,-4.1619],["Miña, La (Campoo De Suso)",43.0192,-4.1619],["Fresno Del Rio",43.0174,-4.1436],["Salces",43.0069,-4.1686],["Fontibre",43.0174,-4.1881],["Argüeso",43.0317,-4.2002],["Aradillos",43.0302,-4.1335],["Nestares",43.0007,-4.1525],["Fontecha",43.0309,-4.1489],["Paracuelles",43.0188,-4.2148]],"39213":[["Fombellida",42.9343,-4.1201],["Suano",42.9794,-4.2081],["Retortillo",42.9837,-4.1155],["Izara",42.977,-4.1881],["Bolmir",42.9893,-4.1251],["Horna De Ebro",42.9659,-4.1171],["La Aguilera",42.9641,-4.0468],["Villaescusa (Enmedio)",42.9659,-4.1171],["Villanueva (Rozas Valdearroyo)",42.9659,-4.1171],["Las Rozas De Valdearroyo",42.9659,-4.1171],["Bimon",42.9659,-4.1171],["Villafria (Enmedio)",42.9659,-4.1171],["Llano (De Valdearroyo)",42.9659,-4.1171],["Quintanilla (Enmedio)",42.9659,-4.1171],["Cervatos",42.9557,-4.1474],["Arroyo De Valdearroyo",42.9729,-4.0542],["San Pedro (Cervatos)",42.9557,-4.1474],["Renedo De Valdearroyo",42.9764,-4.0018],["Sopeña (Cervatos)",42.9557,-4.1474],["Celada Marlantes",42.9469,-4.1039]],"39220":[["Arantiones",42.8233,-3.9708],["Polientes",42.8062,-3.9398],["Salcedo (Valderredible)",42.8151,-3.9553]],"39230":[["Serna, La (Valderredible)",42.8449,-3.9303],["Poblacion De Arriba",42.8726,-3.9455],["Ruijas",42.8198,-3.9187],["Poblacion De Abajo",42.8416,-3.9271]],"39232":[["Espinosa De Bricia",42.8723,-3.8621],["Villaescusa De Ebro",42.8299,-3.833],["Soto De Rucandio",42.9132,-3.8694],["Santa Maria De Hito",42.8445,-3.8748],["Allen Del Hoyo",42.9296,-3.8827],["Riopanero",42.8712,-3.918],["Ruanales",42.8966,-3.9136],["Repudio",42.8454,-3.8934],["Cejancas",42.8788,-3.9077],["Ruerrero",42.8321,-3.9045],["Quintanilla De Rucandio",42.9209,-3.8613],["Villaverde De Hito",42.8427,-3.8666],["San Martin De Elines",42.8286,-3.8687],["Arroyuelos",42.8398,-3.8595],["Renedo De Bricia",42.9234,-3.8393],["Villota De Elines",42.8721,-3.8787],["Arenillas De Ebro",42.8721,-3.8787],["Rucandio (Valderredible)",42.8721,-3.8787],["Cadalso (Valderredible)",42.8721,-3.8787]],"39250":[["Otero (Valderredible)",42.7922,-4.0068],["Villamoñico",42.7805,-4.0631],["Rebollar De Ebro",42.794,-3.9544],["La Puente Del Valle",42.7937,-3.9883],["Villanueva De La Nia",42.8038,-4.0471],["Cubillo De Ebro",42.8087,-4.0324],["Campo De Ebro",42.7957,-3.9661],["Revelillas",42.7775,-4.0771],["Quintanilla De An",42.7971,-3.9743],["Montecillo",42.7748,-3.9756],["Sobrepenilla",42.7785,-3.9918],["Rocamundo",42.7935,-3.9314],["Sobrepeña",42.7853,-3.9624],["Coroneles",42.8236,-4.0771]],"39292":[["Villapaderne",43.0209,-4.0716],["Quintanamanil",43.015,-3.9935],["Servillejas",43.0277,-4.0084],["Aldueso",43.0179,-4.0872],["Monegro",43.013,-4.0367],["Servillas",43.029,-3.9909],["La Costana",43.0166,-4.0041],["Orzales",43.0071,-4.0639],["Villasuso (Campoo De Yuso)",43.0098,-4.0366],["Quintana (Campoo De Yuso)",43.0098,-4.0366],["Requejo (Enmedio)",42.9469,-4.1039],["Bustamante",43.0069,-4.0084]],"39294":[["Corconte",43.0403,-3.8942],["Lanchares",43.0409,-3.9732],["La Riva De Yuso",43.0157,-3.9654],["La Poblacion",43.0324,-3.9442]],"39300":[["Barreda (Torrelavega)",43.3493,-4.0528],["Sierrapando",43.3436,-4.0349],["Torrelavega",43.3486,-4.0509],["Dualez",43.359,-4.0549],["La Montaña",43.3227,-4.0162],["Ganzo",43.3595,-4.0668],["Torres",43.3529,-4.0684],["Tanos",43.3369,-4.0442],["Campuzano",43.3364,-4.0626]],"39310":[["Mogro",43.4271,-3.9731],["Gornazo",43.4131,-3.9833],["Miengo",43.4304,-3.9983]],"39311":[["Bedico",43.3239,-4.0912],["Mijarojos",43.3378,-4.0813],["Sierra Elsa",43.3294,-4.0892],["Mercadal",43.3239,-4.1004],["Cartes",43.3245,-4.0696],["La Barquera",43.3416,-4.0728],["Santiago De Cartes",43.3361,-4.066]],"39312":[["Rumoroso",43.3906,-3.9988],["Soña",43.3827,-4.0025],["Requejada",43.3882,-4.0285]],"39313":[["Polanco",43.3844,-4.0193],["Rinconeda",43.3771,-4.0313],["Barrio Obrero (Polanco)",43.376,-4.0175],["Posadillo",43.3736,-4.0211]],"39314":[["Mijares",43.3681,-4.0778],["Viveda",43.3801,-4.0516],["Queveda",43.3786,-4.0714]],"39315":[["Viernoles",43.3206,-4.0542]],"39318":[["Cuchia",43.4383,-4.018],["Barcena De Cudon",43.4109,-3.9964],["Cudon",43.4155,-4.0152],["Mar",43.3987,-4.0125]],"39320":[["Cobreces",43.3875,-4.2136]],"39329":[["Toñanes",43.3948,-4.1952]],"39330":[["Santillana Del Mar",43.389,-4.1084]],"39340":[["Suances",43.4277,-4.0426]],"39350":[["Hinojedo",43.3956,-4.0487],["Cortiguera",43.4114,-4.0406],["Puente Avios",43.4071,-4.0763]],"39360":[["Tagle",43.4232,-4.0759],["Yuso",43.4021,-4.0898],["Ubiarco",43.4159,-4.1004],["Herran",43.3849,-4.1126],["Arroyo (Santillana Del Mar)",43.4007,-4.0912],["Camplengo",43.3929,-4.0932],["Vispieres",43.3736,-4.101],["Ongayo",43.4146,-4.0654]],"39400":[["Penias",43.2546,-4.0568],["Somahoz",43.2491,-4.0638],["Los Corrales De Buelna",43.2599,-4.0701],["Lobado",43.2599,-4.0701],["San Andres (Los Corrales)",43.2599,-4.0701],["San Mateo",43.273,-4.0782]],"39407":[["Collado (Cieza)",43.2204,-4.1117],["Villasuso De Cieza",43.2204,-4.1117],["Villayuso De Cieza",43.2211,-4.09]],"39408":[["Barros",43.2796,-4.0766],["Coo",43.2738,-4.1071],["Las Caldas De Besaya",43.2989,-4.0712]],"39409":[["Jain",43.2712,-4.0448],["Mata",43.2789,-4.0322],["Posajo Penias",43.2665,-4.0509],["Sopenilla",43.2831,-4.0442],["Sovilla",43.2801,-4.0518],["Tarriba (San Felices)",43.2789,-4.0288],["Barcena, La (San Felices Buelna)",43.2789,-4.0288],["Rivero (San Felices)",43.2789,-4.0288]],"39410":[["Mataporquera",42.8741,-4.1646]],"39417":[["Laguillos",42.9233,-4.0141],["Malataja",42.9267,-3.9998],["Bustidoño",42.922,-3.9904],["Montesclaros",42.924,-4.0014],["Bustasur (Las Rozas)",42.924,-4.0014]],"39418":[["Haya, El (Valdeolea)",42.9042,-4.18],["Las Henestrosas De Las Quintanillas",42.9042,-4.18],["Quintana, La (Valdeolea)",42.9042,-4.18],["Loma, La (Valdeolea)",42.9042,-4.18],["Castrillo Del Haya",42.9042,-4.18],["Barriopalacio (Valdeolea)",42.9042,-4.18],["Santa Olalla (Valdeolea)",42.9042,-4.18],["Rebolledo",42.8918,-4.1594],["Hoyos",42.9403,-4.1493],["Matarrepudio",42.8954,-4.147],["San Martin De Hoyos",42.9321,-4.1534],["Olea",42.9393,-4.1792],["Cuena",42.8566,-4.2107],["Camesa",42.8946,-4.1651],["Bercedo",42.8667,-4.1919],["Las Quintanillas",42.8753,-4.205],["Reinosilla",42.9179,-4.2038],["Mata De Hoz",42.9337,-4.218]],"39419":[["San Andres De Valdelomar",42.8024,-4.1577],["Barruelo (Valdeprado)",42.8714,-4.0884],["Reocin De Los Molinos",42.8613,-4.0538],["Candenosa",42.8524,-4.1224],["San Andres (Valdeprado)",42.8714,-4.0884],["Aldea De Ebro",42.9058,-4.0305],["Valdeprado Del Rio",42.8714,-4.0884],["San Vitores (Valdeprado)",42.8714,-4.0884],["Arroyal De Los Carabeos",42.8543,-4.0818],["Susilla (Valderredible)",42.8543,-4.0818],["Bustillo Del Monte",42.8533,-4.0101],["Santa Maria De Valverde",42.7938,-4.1409],["Barcena De Ebro",42.8524,-4.0375],["San Martin De Valdelomar",42.7965,-4.1466],["Castrillo De Valdelomar",42.7962,-4.1252],["Arcera",42.8756,-4.0472],["Rasgada",42.8373,-4.0508],["Mediadoro",42.9077,-4.0071],["Navamuel",42.8418,-4.0813],["Sotillo",42.8779,-4.1154],["Loma Somera",42.873,-4.0235],["Hormiguera",42.8744,-4.1307]],"39420":[["Pujayo",43.1256,-4.0862],["Cobejo",43.1261,-4.0628],["Pie De Concha",43.1236,-4.0643],["Montabliz",43.1255,-4.071],["Barcena Pie De Concha",43.1255,-4.071]],"39430":[["Mura",43.1497,-4.0424],["Molledo",43.1498,-4.0429],["Caceo",43.1527,-4.0483],["Arca",43.1558,-4.0472],["Helguera (Molledo)",43.1497,-4.0424],["Santa Olalla (Molledo)",43.1497,-4.0424],["Meson, El (Molledo)",43.1497,-4.0424]],"39438":[["Silio",43.1481,-4.0173],["Santian (Molledo)",43.1416,-4.0234],["Santa Marina (Molledo)",43.1416,-4.0234],["Vallejo (Molledo)",43.1416,-4.0234],["San Martin De Quevedo",43.1416,-4.0234],["Pando (Molledo)",43.1416,-4.0234],["Quevedo",43.1284,-4.0383],["Casares",43.1276,-4.0363],["Ulda",43.135,-4.0295]],"39450":[["San Vicente De Leon",43.1786,-4.0942],["Pedredo",43.195,-4.0662],["Los Llares",43.184,-4.1041],["San Cristobal",43.1919,-4.0771],["Las Fraguas",43.194,-4.056],["Santa Agueda",43.1871,-4.0744],["Serna, La (Iguña)",43.1871,-4.0744],["Santa Cruz De Iguña",43.1871,-4.0744],["Palacio (Arenas Iguña)",43.1871,-4.0744],["Cohiño",43.1889,-4.0799],["Arenas De Iguña",43.1829,-4.0473]],"39451":[["Barriopalacio (Anievas)",43.2026,-4.0043],["Villasuso De Anievas",43.2004,-4.0243],["Calga",43.2003,-4.0203],["San Juan De Raicedo",43.1909,-4.045],["Cotillo De Anievas",43.2026,-4.0043],["Bostronizo",43.2054,-4.0473]],"39460":[["Yermo",43.3075,-4.0825],["Riocorvo",43.311,-4.0711],["Corral",43.304,-4.0995],["San Miguel",43.3065,-4.1065],["Llano (San Felices Buelna)",43.2789,-4.0288]],"39470":[["Renedo De Pielagos",43.3529,-3.9503]],"39477":[["Quijano De Pielagos",43.3681,-3.9559],["Barcenilla De Pielagos",43.3887,-3.9565],["Oruña De Pielagos",43.4034,-3.9526]],"39478":[["Boo De Pielagos",43.431,-3.9459],["Arce",43.4129,-3.9393]],"39479":[["Zurita",43.3464,-3.9889],["Carandia",43.3352,-3.9757],["Vioño",43.3581,-3.9718]],"39490":[["Santiurde De Reinosa",43.0614,-4.0835],["Lantueno",43.0509,-4.082],["Somballe",43.0415,-4.0635]],"39491":[["Ventorrillo",43.0795,-4.0713],["Pesquera",43.0822,-4.0793],["Cañeda",43.0184,-4.1178],["Rioseco (Santiurde-Reinosa)",43.0592,-4.0585],["Santa Olalla De Aguayo",43.0702,-4.0316],["Santa Maria De Aguayo",43.0708,-4.0371],["San Miguel De Aguayo",43.0538,-4.0255]],"39500":[["Vernejo",43.3036,-4.2248],["Ontoria",43.3096,-4.2151],["Cabezon De La Sal",43.3082,-4.2357]],"39507":[["Rodezas",43.3438,-4.2402],["Toporias",43.3347,-4.2291],["Duña",43.3356,-4.2171],["Valoria",43.3336,-4.26],["Bustablado (Cabezon De La Sal)",43.3082,-4.2357],["Hayuela, La (Udias)",43.3311,-4.2347],["Pumalverde (Udias)",43.3311,-4.2347],["Canales (Udias)",43.3311,-4.2347],["Cobijon (Udias)",43.3311,-4.2347],["Virgen La (Udias)",43.3311,-4.2347],["Llano, El (Udias)",43.3311,-4.2347]],"39509":[["Virgen De La Peña",43.3098,-4.1819],["Cabrojo (Cabezon De La Sal)",43.3098,-4.1819],["Villanueva De La Peña",43.3169,-4.1924],["Sierra De Ibio",43.3158,-4.1606],["Luzmela-Mazcuerras",43.2969,-4.2088],["Mazcuerras",43.3098,-4.1819],["Riaño De Ibio",43.3164,-4.1736],["Herrera De Ibio",43.3,-4.1791],["Ibio",43.3128,-4.1771]],"39510":[["Teran (Valle Cabuerniga)",43.2257,-4.3004],["Valle De Cabuerniga",43.2257,-4.3004],["Sopeña (Cabuerniga)",43.2257,-4.3004]],"39511":[["Viaña (Cabuerniga)",43.2257,-4.3004],["Selores (Cabuerniga)",43.2257,-4.3004],["Renedo De Cabuerniga",43.2042,-4.3036]],"39513":[["Barrio De Arriba (Ruente)",43.2583,-4.2679],["Gismana (Ruente)",43.2583,-4.2679],["Cuesta, La (Ruente)",43.2583,-4.2679],["Barrio De Abajo (Ruente)",43.2583,-4.2679],["Barcenillas (Ruente)",43.2583,-4.2679],["Lamiña (Ruente)",43.2583,-4.2679],["Ucieda",43.2583,-4.2679],["Ruente",43.2582,-4.2683],["Monasterio",43.2593,-4.2645]],"39517":[["El Tojo",43.1593,-4.2841],["Saja",43.1455,-4.2861]],"39518":[["Fresneda",43.1808,-4.298],["Barcenamayor",43.1735,-4.2859],["Los Tojos",43.1543,-4.2535],["Correpoco",43.1687,-4.2748]],"39520":[["Comillas",43.3854,-4.2904],["Seminario Pontificio",43.386,-4.2916]],"39525":[["Torriente",43.395,-4.1346],["Viallan",43.395,-4.1346],["Carrastrada (Alfoz De Lloredo)",43.395,-4.1346],["Oreña",43.395,-4.1346],["Barcena (Alfoz)",43.395,-4.1346],["Caborredondo (Alfoz De Lloredo)",43.395,-4.1346],["San Roque (Oreña)",43.395,-4.1346],["Padruno",43.3939,-4.1514],["Perelada",43.3935,-4.1555]],"39526":[["Novales",43.3793,-4.1815],["Cigüenza",43.3879,-4.1805]],"39527":[["Ruiloba",43.3853,-4.2516],["Pando (Ruiloba)",43.3853,-4.2516],["Sierra (Ruiloba)",43.3853,-4.2516],["Casasola (Ruiloba)",43.3853,-4.2516],["Iglesia, La (Ruiloba)",43.3853,-4.2516],["Ruilobuca",43.3748,-4.2584],["Liandres",43.3907,-4.2528],["Concha",43.3857,-4.2661],["Trasierra",43.3918,-4.2302]],"39528":[["Rioturbio",43.3636,-4.3159],["Larteme",43.3656,-4.3315],["Cara",43.3743,-4.3381],["Ceceño",43.3817,-4.3274],["Ruiseñada",43.3638,-4.2935],["Santa Ana",43.3705,-4.3335],["Rubarcena",43.3829,-4.3032],["El Tejo",43.3749,-4.3372],["La Rabia",43.3795,-4.3166],["Trasvia",43.3839,-4.3146]],"39530":[["Puente San Miguel",43.359,-4.0851]],"39538":[["La Veguilla",43.3586,-4.0996],["Reocin",43.3391,-4.094],["Helguera (Reocin)",43.3492,-4.0969]],"39539":[["Villapresente",43.3639,-4.1069],["Cerrazo",43.3659,-4.1263],["San Pedro (Rudaguera)",43.361,-4.1512],["Lloredo",43.361,-4.1512],["Rudaguera",43.361,-4.1512],["Fresnedo (Alfoz De Lloredo)",43.361,-4.1512]],"39540":[["San Vicente De La Barquera",43.3851,-4.3993]],"39547":[["Los Llaos",43.3896,-4.3765],["Revilla, La (San Vicente De La Barquera)",43.3854,-4.3388]],"39548":[["Santillan",43.3832,-4.4382],["Pesues",43.3756,-4.4875],["Los Tanagos",43.3819,-4.458],["Prellezo",43.3831,-4.4365]],"39549":[["Abanillas",43.3465,-4.4605],["Abaño",43.3623,-4.3907],["Serdio",43.3627,-4.4494],["Estrada",43.3587,-4.443],["Hortigal",43.3588,-4.4243],["Gandarilla",43.3411,-4.4235],["El Barcenal",43.3416,-4.3865],["Acebosa, La (Abanillas)",43.3466,-4.4618],["Portillo (Val De San Vicente)",43.3519,-4.43]],"39550":[["Venta, La (Lamason)",43.2785,-4.4788],["Pumares, Los (Lamason)",43.2785,-4.4788],["Lafuente De Lamason",43.2785,-4.4788],["Rabago",43.2785,-4.4788],["Rio (Lamason)",43.2785,-4.4788],["Quintanilla (Lamason)",43.2785,-4.4788],["Burio",43.2542,-4.5113],["Sobrelapeña",43.2524,-4.4834],["Cires",43.2428,-4.4996],["Cades",43.3037,-4.4705],["Bielva",43.3151,-4.4645]],"39551":[["Casamaria",43.318,-4.5131],["Cabanzon",43.3216,-4.4991]],"39553":[["Cotera, La (Rionansa)",43.2792,-4.4333],["Las Barcenas",43.2792,-4.4333],["Arenas (Rionansa)",43.2792,-4.4333],["Herreria, La (Rionansa)",43.2792,-4.4333],["Riclones",43.2837,-4.4571],["Celis",43.2826,-4.4345],["Celucos",43.2755,-4.4331]],"39554":[["Obeso",43.2551,-4.4217],["Pedreo",43.2536,-4.4164],["Puentenansa",43.2534,-4.4066],["Rioseco (Rionansa)",43.2539,-4.4155],["Los Picayos",43.2539,-4.4155],["San Sebastian De Garabandal",43.2539,-4.4155]],"39555":[["Lastra, La (Tudanca)",43.1693,-4.3546],["Sarceda",43.1897,-4.3577],["Santotis",43.1616,-4.3702],["Tudanca",43.1522,-4.3731]],"39556":[["Puente Pumar",43.1096,-4.4049],["La Laguna",43.1147,-4.4072],["Uznayo",43.0919,-4.4023]],"39557":[["Santa Eulalia",43.0889,-4.4443],["Lombraña",43.101,-4.4142],["Cotillos",43.0902,-4.4569],["Salceda",43.0798,-4.4584],["Pejanda",43.107,-4.4296],["Belmonte",43.1079,-4.4449],["Tresabuela",43.086,-4.4281],["San Mames (Polaciones)",43.0922,-4.441]],"39558":[["Cabrojo (Rionansa)",43.2542,-4.3586],["Carmona",43.2552,-4.3574]],"39559":[["Rozadio",43.2235,-4.3873],["Cosio",43.2234,-4.3868]],"39560":[["Unquera",43.3737,-4.5161]],"39569":[["Molleda",43.3666,-4.5176],["Helgueras",43.3499,-4.5053],["San Pedro De Las Baheras",43.3607,-4.5068],["Prio",43.3655,-4.4975]],"39570":[["Rases",43.1546,-4.6205],["Santo Toribio",43.1503,-4.6528],["Potes",43.1593,-4.6134]],"39571":[["Aniezo",43.1454,-4.5254],["Cabezon De Liebana",43.1344,-4.5763],["Cahecho",43.1606,-4.5542],["Buyezo",43.1192,-4.5108],["Perrozo",43.1183,-4.5512],["Torices",43.1344,-4.5477],["Cambarco",43.1505,-4.5621],["Luriezo",43.1539,-4.5384]],"39572":[["Vendejo",43.057,-4.5447],["Obargo",43.0855,-4.538],["Pesaguero",43.0755,-4.5384],["Caloca",43.0421,-4.5618],["Barreda (Pesaguero)",43.0672,-4.5471],["Lomeña-Basieda",43.0872,-4.5678],["Avellanedo",43.0728,-4.5243]],"39573":[["San Andres (Cabezon Liebana)",43.1137,-4.5386],["Puente Asnil",43.1137,-4.5386],["Lamedo",43.1088,-4.4954],["Piasca",43.1193,-4.582]],"39574":[["Valdeprado",43.0753,-4.4936],["Frama",43.1484,-4.5938],["Lerones",43.0972,-4.5607],["Cueva (Pesaguero)",43.0766,-4.5374]],"39575":[["Naroba",43.0929,-4.6248],["Valcayo",43.0838,-4.6464],["Dobres",43.0626,-4.6419],["Señas",43.0892,-4.6488],["Cucayo",43.0559,-4.6373],["Tollo",43.1101,-4.6207],["Valmeo",43.133,-4.6316],["Tudes",43.1205,-4.6107],["Soberado",43.0832,-4.6304],["Barago",43.0709,-4.6161]],"39577":[["Vejo",43.0905,-4.7008],["Enterrias",43.0975,-4.6798],["Toranzo (Vega Liebana)",43.07,-4.6916],["Villaverde (Vega De Liebana)",43.07,-4.6916],["Barrio (Vega Liebana)",43.07,-4.6916],["Ongayo (Vega Liebana)",43.07,-4.6916],["Vega De Liebana",43.07,-4.6916],["Vada",43.0904,-4.6751],["Maredes",43.1341,-4.6613],["Campollo",43.121,-4.6542],["Bores",43.0942,-4.667],["El Arroyo",43.0909,-4.7002],["Dobares",43.0937,-4.6879],["Ledantes",43.0701,-4.6917],["Pollayo",43.0882,-4.663],["Dobarganes",43.1028,-4.6922]],"39580":[["Navedo",43.2519,-4.5794],["Cicera",43.2356,-4.55],["Piñeres",43.2439,-4.5616],["Linares",43.2535,-4.5845],["La Hermida",43.2546,-4.6144],["Caldas (Peñarrubia)",43.2475,-4.5898],["Bejes",43.2424,-4.6465],["Roza (Peñarrubia)",43.2475,-4.5898]],"39582":[["Enterria",43.1283,-4.726],["Llanos, Los (Camaleño)",43.1283,-4.726],["Barcena (Camaleño)",43.1283,-4.726],["Treviño",43.1218,-4.7266],["Areños",43.1139,-4.7286],["Llaves",43.1361,-4.7309],["Pembes",43.1297,-4.7461],["Mogrovejo",43.1466,-4.7101],["Cosgaya",43.1094,-4.7275],["Besoy",43.1302,-4.7201],["Sebrango",43.1409,-4.7178]],"39583":[["San Pedro (Bedoya)",43.196,-4.5858],["Trillayo",43.196,-4.5858],["Salarzon",43.188,-4.5716],["Castro-Cillorigo",43.1972,-4.6023],["Pumareña",43.1833,-4.5813],["Lebeña",43.2149,-4.5862]],"39584":[["Cobeña",43.193,-4.5837],["Cabañes",43.2123,-4.6172],["Armaño",43.1768,-4.6089],["Colio",43.1937,-4.6326],["Esanos",43.1805,-4.5723],["Ojedo",43.1628,-4.6091],["Pendes",43.202,-4.6103],["Aliezo",43.1725,-4.5999],["Tama",43.1771,-4.6002],["Viñon",43.1854,-4.6394],["Llayo",43.1858,-4.6076]],"39586":[["Congarna",43.1558,-4.6613],["Mieses",43.152,-4.6399],["Turieno",43.1583,-4.6503],["Arguebanes",43.1727,-4.6618]],"39587":[["Baro",43.1532,-4.6821],["Molina, La (Camaleño)",43.1547,-4.6883],["San Pelayo (Camaleño)",43.1547,-4.6883],["Vallejo (Camaleno)",43.1547,-4.6883],["Quintana (Camaleño)",43.1547,-4.6883],["Camaleño",43.1506,-4.6942],["Brez",43.1628,-4.698],["Tanarrio",43.1577,-4.7079],["Redo",43.1514,-4.7084],["Beares",43.1563,-4.6694],["Lon",43.1672,-4.6825],["La Frecha",43.1515,-4.6761],["Bodia",43.1419,-4.6749]],"39588":[["Las Ilces",43.1148,-4.769],["Pido",43.1272,-4.7949],["Espinama",43.128,-4.7868],["Fuente De",43.1431,-4.8124]],"39590":[["La Busta",43.3492,-4.1778],["Quijas",43.3504,-4.1306],["Golbardo",43.3415,-4.1578],["Valles",43.3536,-4.1145],["Barcenaciones",43.3438,-4.1497]],"39591":[["Caranceja",43.3369,-4.1658],["San Esteban (Casar De Periedo)",43.3344,-4.1725],["Periedo",43.3284,-4.1831],["Casar De Periedo",43.3344,-4.1725],["San Esteban (Reocin)",43.3373,-4.1678]],"39592":[["San Vicente Del Monte",43.2872,-4.3058],["La Plaza",43.3172,-4.3035],["Hualle",43.3159,-4.2946],["Carrejo",43.293,-4.2374],["Cos",43.29,-4.2236],["El Ansar",43.316,-4.3012],["Herreria, La (Valdaliga)",43.3009,-4.2735],["Santibañez (Cabezon De La Sal)",43.3009,-4.2735],["La Ria",43.3009,-4.2735],["El Turujal",43.3009,-4.2735],["Birruezas",43.3009,-4.2735],["Molina, La (Valdaliga)",43.3009,-4.2735],["Requejo (Valdaliga)",43.3009,-4.2735],["Sierra, La (Valdaliga)",43.3009,-4.2735],["Casas Nuevas, Las (Valdaliga)",43.3009,-4.2735],["Treceño",43.3167,-4.3],["Corrales, Los (Treceño)",43.3167,-4.3]],"39593":[["Lamadrid",43.3539,-4.3632],["Vallines",43.3366,-4.3408],["Las Arenas",43.1829,-4.0473],["Arguedes",43.3482,-4.3525],["Sejo De Abajo",43.3621,-4.3494],["Bustillo (Valdaliga)",43.3166,-4.3043],["Radillo",43.3166,-4.3043],["Puente, La (Valdaliga)",43.3166,-4.3043],["Cuevas, Las (Valdaliga)",43.3166,-4.3043],["San Salvador (Valdaliga)",43.3166,-4.3043],["Losbia",43.3166,-4.3043],["La Peñia",43.3166,-4.3043],["Movellan",43.3166,-4.3043],["La Hoya",43.3166,-4.3043],["Mazo, El (Valdaliga)",43.3166,-4.3043],["Venta, La (Valdaliga)",43.3166,-4.3043],["San Pedro (Valdaliga)",43.3166,-4.3043],["El Vear",43.3166,-4.3043],["La Cantera",43.3166,-4.3043],["Vega, La (Valdaliga)",43.3166,-4.3043],["Cotera, La (Roiz-Valdaliga)",43.3166,-4.3043],["La Ganceda",43.3166,-4.3043],["Concha, La (Valdaliga)",43.3166,-4.3043],["Roiz",43.3166,-4.3043],["Cotera, La (Lamadrid-Valdaliga)",43.3166,-4.3043],["La Cocina",43.3196,-4.3517],["Bustriguado",43.2956,-4.3496],["Caviedes",43.3387,-4.3259]],"39594":[["Muñorrodero",43.3631,-4.4853],["Luey",43.3513,-4.484],["Camijanes",43.3282,-4.4836],["Pechon",43.3898,-4.4901]],"39595":[["Villanueva (Valdaliga)",43.3253,-4.393],["Labarces",43.3255,-4.3935],["Caviña",43.3253,-4.393],["La Mata",43.3253,-4.393]],"39600":[["Revilla De Camargo",43.4064,-3.8662],["Muriedas",43.4246,-3.8539],["Maliaño",43.4185,-3.8364]],"39608":[["Cacicedo",43.4335,-3.8708],["Igollo De Camargo",43.4299,-3.8851],["Herrera De Camargo",43.4312,-3.8842]],"39609":[["Escobedo De Camargo",43.4074,-3.885],["Camargo",43.4048,-3.8828]],"39610":[["Astillero",43.4009,-3.8205]],"39611":[["Guarnizo",43.3967,-3.8251]],"39612":[["Cianca",43.3639,-3.8889],["Parbayon",43.3762,-3.8915],["Riosapero",43.3516,-3.8862]],"39613":[["Boo De Guarnizo",43.3869,-3.8453]],"39618":[["Pontejos",43.4071,-3.8029]],"39619":[["Santiago De Heras",43.3869,-3.8453],["San Salvador (Medio Cudeyo)",43.3869,-3.8453]],"39620":[["Saron",43.3257,-3.8518]],"39626":[["San Roman De Cayon",43.3108,-3.8644],["La Abadilla",43.315,-3.8547],["Argomilla De Cayon",43.3069,-3.8741]],"39627":[["Penagos",43.3401,-3.8064],["La Encina",43.319,-3.8648],["Cabarceno",43.358,-3.8223],["Sobarzo (Penagos)",43.3433,-3.834],["Llanos, Los (Penagos)",43.3433,-3.834],["El Arenal De Penagos",43.3433,-3.834]],"39630":[["Penilla (Villafufre)",43.2656,-3.8937],["Vega (Villafufre)",43.2656,-3.8937]],"39638":[["Villafufre",43.2656,-3.8937],["Escobedo De Villafufre",43.2656,-3.8937],["Rasillo De Villafufre",43.2656,-3.8937]],"39639":[["Abionzo",43.2445,-3.8116],["Llerana",43.2616,-3.81],["Saro",43.26,-3.8373]],"39640":[["Villacarriedo",43.2293,-3.8094]],"39649":[["Aloños",43.2295,-3.8746],["Pedroso",43.2278,-3.843],["Tezanos",43.2208,-3.8239],["Barcena De Carriedo",43.2436,-3.8281],["Santibañez De Carriedo",43.2305,-3.8425],["Soto (Villacarriedo)",43.2305,-3.8425]],"39650":[["Penilla, La De Cayon",43.319,-3.8825],["La Cueva",43.3167,-3.8989]],"39660":[["Socobio",43.3165,-3.9453],["Pomaluengo",43.3097,-3.9303],["Villabañez",43.3212,-3.9623]],"39670":[["Aes",43.2829,-3.9567],["Hijas",43.2848,-3.9882],["Puente Viesgo",43.2967,-3.9633]],"39679":[["Las Presillas",43.3252,-3.9851],["Vargas",43.3228,-3.9646]],"39680":[["Alceda",43.1943,-3.9183],["Ontaneda",43.2001,-3.9264]],"39681":[["Penilla (Luena)",43.0771,-3.8763],["Sel Del Manzano",43.0771,-3.8763],["Resconorio",43.0695,-3.8608],["Bollacin",43.0847,-3.8918]],"39682":[["Ocejo",43.1773,-3.8716],["Sel Del Tojo (Toranzo)",43.1758,-3.8769],["Vega Escobosa",43.1758,-3.8769],["Retuerta",43.1758,-3.8769],["Sel De La Peña",43.1758,-3.8769],["La Parada",43.1758,-3.8769],["Entrambasmestas",43.1689,-3.8956],["Guzparras",43.1848,-3.8586]],"39683":[["Aldano",43.1291,-3.8704]],"39685":[["Candolias",43.1575,-3.7982],["Viaña (Vega Pas)",43.1569,-3.7832],["Yera",43.1333,-3.7667],["Vega De Pas",43.1569,-3.7832],["Pandillo (Vega Pas)",43.1569,-3.7832]],"39686":[["Bustiyerro",43.1156,-3.8411],["San Pedro Del Romeral",43.1151,-3.8186],["Bustaleguin",43.1098,-3.7916],["La Gurueba",43.1691,-3.8428],["Vegalosvados",43.1274,-3.8235],["Hornedillo",43.1274,-3.8235],["El Rosario",43.1274,-3.8235],["Sota, La (San Pedro Romeral)",43.1274,-3.8235],["Vegaloscorrales",43.1274,-3.8235],["La Peredilla",43.1274,-3.8235]],"39687":[["Pandoto",43.1029,-3.9128],["Llano (Luena)",43.1029,-3.9128],["San Andres (Luena)",43.1029,-3.9128],["El Cocejon",43.1029,-3.9128],["Sel Del Hoyo",43.1029,-3.9128],["Puente, La (Luena)",43.1029,-3.9128],["Sel De La Carrera",43.1447,-3.9266],["Los Pandos",43.1028,-3.9057],["Selviejo",43.0927,-3.9283],["Carrascal De Cocejon",43.0893,-3.8726],["Carrascal De San Miguel",43.0928,-3.9182],["San Miguel De Luena",43.0948,-3.9251]],"39688":[["Vozpornoche",43.1264,-3.9215],["Cazpurrion",43.1264,-3.9215],["La Garma",43.1264,-3.9215],["Tablado (Luena)",43.1264,-3.9215],["Bustasur (Luena)",43.1264,-3.9215],["La Ventona",43.1264,-3.9215],["Urdiales",43.1264,-3.9215]],"39689":[["Barcena De Toranzo",43.184,-3.896],["Vejoris",43.2057,-3.9195],["San Martin De Toranzo",43.1949,-3.9077]],"39690":[["Villanueva (Villaescusa)",43.3455,-3.8613],["Obregon",43.3455,-3.8613],["Concha, La (Villaescu)",43.3455,-3.8613]],"39691":[["Pando (Santiurde De Toranzo)",43.2683,-3.9356],["Iruz",43.2728,-3.9355],["Penilla (Toranzo)",43.2683,-3.9356]],"39692":[["Liaño",43.3843,-3.8343]],"39694":[["Esles",43.282,-3.805],["Totero",43.2996,-3.8406],["Lloreda",43.2949,-3.8211],["Santa Maria De Cayon",43.3085,-3.8368]],"39696":[["Campillo",43.206,-3.7746],["Pisueña",43.191,-3.7634],["Bustantegua",43.2144,-3.7574],["Selaya",43.2149,-3.8062]],"39697":[["Prases",43.2458,-3.9495],["Corvera",43.2663,-3.9465]],"39698":[["Acereda",43.2316,-3.9341],["Villasevil",43.2478,-3.9378],["Santiurde De Toranzo",43.2382,-3.9395]],"39699":[["Borleña",43.2357,-3.9526],["Castillo Pedroso",43.2161,-3.9703],["Villegar",43.2231,-3.9478],["San Vicente De Toranzo",43.2083,-3.9382],["Quintana (Toranzo)",43.2177,-3.953],["Esponzues",43.2056,-3.9547]],"39700":[["Castro Urdiales",43.3829,-3.2204]],"39706":[["Onton",43.3509,-3.1728],["Lusa",43.3527,-3.2056],["Baltezana",43.3416,-3.1717],["Santullan",43.3468,-3.2103]],"39707":[["Otañes",43.3299,-3.1936],["Talledo",43.3165,-3.1733]],"39709":[["Mioño",43.3594,-3.202],["Samano",43.3577,-3.2409]],"39710":[["Solares",43.3838,-3.7373]],"39715":[["Navajeda",43.366,-3.696],["Entrambasaguas",43.377,-3.6779]],"39716":[["Hoznayo",43.3897,-3.694],["El Bosque",43.3935,-3.7176],["Hornedo",43.3653,-3.6308],["Santa Marina (Entrambasaguas)",43.3841,-3.6783]],"39718":[["Sobremazas",43.375,-3.7465],["Tarriba (Lierganes)",43.3608,-3.7666],["La Herran",43.3554,-3.7764],["Bucarrero",43.3566,-3.7726],["Somarriba",43.357,-3.7946],["El Condado",43.3442,-3.7926],["Casa Del Monte",43.3608,-3.7666],["San Vitores (Medio Cudeyo)",43.3608,-3.7666],["Pamanes",43.3608,-3.7666],["Anaz",43.3623,-3.7529]],"39719":[["Setien",43.4219,-3.7326],["Puente Aguero",43.4053,-3.7169],["Agüero",43.4143,-3.7219],["Rubayo",43.421,-3.7524],["Orejo",43.3999,-3.7342]],"39720":[["La Cavada",43.3506,-3.7041],["Monte (Riotuerto)",43.3513,-3.7038],["Rucandio (Riotuerto)",43.3513,-3.7038],["Barrio De Arriba (Riotuerto)",43.3513,-3.7038]],"39722":[["Lierganes",43.3174,-3.7267]],"39723":[["Vega, La (Miera)",43.2952,-3.7062],["Solana (Miera)",43.2952,-3.7062],["Pumares, Los (Miera)",43.2952,-3.7062],["La Carcoba",43.2781,-3.6991],["Mortesante",43.3124,-3.7141],["Irias",43.2793,-3.7096],["La Cantolla",43.2947,-3.7075],["Mirones",43.2949,-3.7026]],"39724":[["Valdecilla",43.3801,-3.7333],["Hermosa",43.3626,-3.7323],["Ceceñas",43.375,-3.7187]],"39727":[["Calgar",43.3475,-3.7401],["La Rañada",43.3382,-3.7451],["Rubalcaba",43.3252,-3.743],["Los Prados",43.3246,-3.7444],["Vega, La (Lierganes)",43.3246,-3.7444],["Angustina (Riotuerto)",43.3246,-3.7444],["Extremera",43.3235,-3.7273],["El Rellano",43.3141,-3.7312],["Mercadillo",43.3424,-3.7433],["La Quieva",43.3103,-3.7554],["Las Porquerizas",43.3096,-3.7705]],"39728":[["Linto",43.272,-3.7068],["Ajanedo",43.2603,-3.7118],["Morilla",43.2528,-3.7308],["Valdicio",43.2264,-3.6821],["La Concha",43.3699,-3.8522],["La Toba",43.2566,-3.7288],["La Pedrosa",43.2735,-3.7349],["Calseca",43.2735,-3.7349],["San Roque De Riomiera",43.2735,-3.7349]],"39730":[["Beranga",43.4147,-3.5768],["Praves",43.4116,-3.6033]],"39738":[["La Collada",43.3401,-3.6261],["Solorzano",43.3823,-3.5879],["Garzon (Solorzano)",43.3693,-3.5977],["Fresnedo (Solorzano)",43.3693,-3.5977],["Riaño (Solorzano)",43.3693,-3.5977],["Hazas De Cesto",43.3965,-3.5892],["Regolfo",43.3582,-3.5876]],"39740":[["Santoña",43.443,-3.4562]],"39749":[["Dueso",43.4574,-3.4548]],"39750":[["Colindres",43.3956,-3.4507]],"39760":[["Primosto",43.3875,-3.4747],["La Maza",43.3955,-3.4775],["La Peña",43.3923,-3.469],["Treto",43.3942,-3.4724],["Sierra, La (Treto)",43.3935,-3.4702],["Coz De Monte",43.3679,-3.711]],"39761":[["Adal",43.3952,-3.4772],["Vidular",43.3834,-3.5399],["Nates",43.3778,-3.4903]],"39762":[["Carasa",43.3711,-3.463],["Padierniga",43.3712,-3.4611]],"39764":[["Rada",43.3655,-3.492],["Secadura",43.3558,-3.5323],["Badames",43.3551,-3.497],["San Mames De Aras",43.3545,-3.505],["Llanez",43.367,-3.5127]],"39766":[["San Bartolome De Los Montes",43.3238,-3.4863],["San Miguel De Aras",43.3288,-3.507],["San Pantaleon De Aras",43.3445,-3.4969],["Bueras",43.3399,-3.4788]],"39770":[["El Callejo",43.4017,-3.4427],["Las Casillas",43.404,-3.4237],["Laredo",43.4146,-3.429],["Pesquera, La (Laredo)",43.4098,-3.4161],["Villante",43.4098,-3.4161]],"39776":[["Villanueva (Liendo)",43.3889,-3.3763],["Rocillo (Liendo)",43.3889,-3.3763],["Mendina",43.3889,-3.3763],["Sopeña (Liendo)",43.3889,-3.3763],["Noval (Liendo)",43.3889,-3.3763],["Hazas (Liendo)",43.3889,-3.3763],["Isequilla",43.4021,-3.3619],["Iseca Vieja",43.4021,-3.3704],["Mollaneda",43.398,-3.3646],["Villaviad",43.3864,-3.3815],["Iseca Nueva",43.3822,-3.3695],["Liendo",43.3889,-3.3763],["La Portilla",43.3876,-3.3829],["Llatazos",43.3935,-3.3674]],"39777":[["Tarrueza",43.392,-3.4023],["Las Carcobas",43.407,-3.4025],["La Arenosa",43.4044,-3.4122]],"39778":[["Seña",43.3854,-3.4116]],"39788":[["Torquiendo",43.3792,-3.3358],["Lugarejos",43.3656,-3.3404],["Balbacienta",43.3583,-3.312],["Nocina",43.3788,-3.319],["Pomar",43.3619,-3.3145],["Adino",43.3449,-3.3287],["Angostina",43.3355,-3.3256],["Rioseco De Guriezo",43.3667,-3.3167],["La Magdalena",43.354,-3.3351],["Ranero",43.3563,-3.2964],["Landeral",43.3358,-3.3321],["Tresagua",43.3581,-3.3242],["El Pontarron",43.3581,-3.3242],["Lendagua",43.3581,-3.3242],["Llano, El (Guriezo)",43.3581,-3.3242],["La Corra",43.3581,-3.3242],["Carazon",43.3581,-3.3242],["Francos",43.3581,-3.3242],["Puente, El (Guriezo)",43.3581,-3.3242],["Revilla (Guriezo)",43.3581,-3.3242],["Santa Cruz (Guriezo)",43.3581,-3.3242]],"39790":[["Cornocio (Cicero)",43.412,-3.4892],["Carnerizas",43.412,-3.4892],["San Pelayo (Cicero)",43.412,-3.4892],["Barcena De Cicero",43.4216,-3.5103],["Pomares",43.4095,-3.4908],["La Fragua",43.4112,-3.4939],["Cicero",43.4046,-3.4891],["La Via",43.4144,-3.4811],["Rueda",43.405,-3.4815],["Gama",43.4236,-3.5207],["Rivaplumo",43.4141,-3.4841],["Paderne",43.4144,-3.4878],["El Bao",43.4128,-3.4917],["Sollagua",43.4175,-3.481],["La Ermita",43.4121,-3.4898],["Mazuecas",43.4108,-3.486]],"39791":[["Madama",43.4176,-3.5427],["La Escallada",43.4157,-3.5452],["La Bodega",43.4118,-3.5097],["Estian",43.4201,-3.548],["Tuebre",43.42,-3.5073],["Casuso",43.4123,-3.5464],["Iglesia, La (Cicero)",43.4058,-3.5491],["Pendon",43.4058,-3.5491],["El Cristo",43.4058,-3.5491],["La Madrid",43.4058,-3.5491],["Cuesta, La (Cicero)",43.4058,-3.5491],["Palacio (Cicero)",43.4058,-3.5491],["El Manzanal",43.4058,-3.5491],["El Pico",43.4058,-3.5491],["La Tejera",43.4058,-3.5491],["Moncalian",43.4009,-3.5496],["Ambrosero",43.4155,-3.5492],["Iglesia, La (Ambrosero)",43.4155,-3.5492],["Riolastras",43.3815,-3.5479],["San Andres (Ambrosero)",43.4155,-3.5492]],"39792":[["Heras",43.3961,-3.7667],["Gajano",43.4115,-3.7672]],"39793":[["Pontones",43.4235,-3.6844],["Omoño",43.4279,-3.6617],["Las Pilas",43.424,-3.6389],["Cubas",43.4246,-3.7074],["Villaverde De Pontones",43.4123,-3.7016],["Liermo",43.4342,-3.644]],"39794":[["Hoz De Anero",43.4071,-3.6621],["Anero",43.3946,-3.6522]],"39795":[["Baranda",43.4433,-3.5262],["Cornocio (Escalante)",43.4368,-3.5135],["Noval (Escalante)",43.4368,-3.5135],["Montehano",43.4368,-3.5135],["Escalante",43.4368,-3.5135]],"39798":[["Allendelagua",43.3951,-3.2472],["Sonabia",43.4097,-3.3279],["Islares",43.4042,-3.3012],["Oriñon",43.396,-3.3228],["Cerdigo",43.3994,-3.2662]],"39800":[["Ramales De La Victoria",43.2572,-3.4652],["Salto Del Oso",43.2572,-3.4652],["Veares",43.2615,-3.476]],"39805":[["El Prado",43.1573,-3.4303],["Calera, La (Vizcaya)",43.215,-3.4512],["La Pared",43.2376,-3.4506],["Herada De Soba",43.1924,-3.4517]],"39806":[["Revilla De Soba",43.2015,-3.4884],["San Martin De Soba",43.1977,-3.5545],["Fresnedo De Soba",43.1889,-3.4745],["Villar De Soba",43.1781,-3.5326],["Aja",43.2002,-3.522],["Pilas",43.185,-3.4886],["Bustancilles",43.1779,-3.5533],["Astrana",43.2021,-3.5616],["Cañedo",43.1811,-3.5757],["Valcaba",43.1754,-3.5656],["Lavin",43.1852,-3.559],["Quintana (Soba)",43.1946,-3.5353],["Hazas De Soba",43.1932,-3.5537],["Ason",43.2285,-3.6034],["San Juan De Soba",43.2153,-3.4618],["Villaverde De Soba",43.1904,-3.5591]],"39808":[["Rozas De Soba",43.215,-3.4893],["Incedo De Soba",43.2141,-3.4789],["Santayana De Soba",43.1797,-3.5098],["Regules",43.2032,-3.503],["Rehoyos",43.1782,-3.4965],["Sangas",43.1697,-3.5127],["Veguilla De Soba",43.1878,-3.5177],["San Pedro (Soba)",43.1962,-3.4993]],"39809":[["Pondra",43.2661,-3.4223],["Gibaja",43.2772,-3.4347],["Riancho",43.2681,-3.4328],["Barcena (Gibaja)",43.2772,-3.4347],["Guardamino",43.2606,-3.4447],["Helguero",43.2564,-3.4905],["Iseña",43.2706,-3.444],["Los Valles",43.2706,-3.444],["Mazo, El (Ramales)",43.2706,-3.444],["Entrepuentes",43.2706,-3.444],["Quintana, La (Gibaja)",43.2772,-3.4347],["Estacion, La (Gibaja)",43.2772,-3.4347]],"39812":[["Sierra Alcomba",43.2946,-3.544],["Matienzo",43.3131,-3.5777],["Ogarrio",43.2874,-3.5396],["Mentera Barruelo",43.2807,-3.5078]],"39813":[["Rocias",43.2626,-3.5941],["Tabladillo",43.2891,-3.6604],["Val De Ason",43.2486,-3.6086],["Arredondo",43.2741,-3.6011],["Socueva",43.265,-3.6082],["El Avellanal",43.2833,-3.65],["Ason (Arredondo)",43.2732,-3.6003],["Iglesia, La (Arredondo)",43.2732,-3.6003],["Roza, La (Arredondo)",43.2732,-3.6003],["Alisas (Ramales)",43.2572,-3.4652]],"39815":[["Valle De Ruesga",43.2769,-3.5266],["Riva De Ruesga",43.2769,-3.5266]],"39820":[["Limpias",43.3628,-3.4218]],"39840":[["Ampuero",43.3438,-3.4155]],"39849":[["Marron",43.3486,-3.4352],["Coterillo (Ampuero)",43.341,-3.4217],["Cerbiago",43.3481,-3.4075],["Las Entradas",43.3434,-3.382],["Tabernilla",43.3423,-3.4224],["Las Garmillas",43.341,-3.4217],["Alisas (Ampuero)",43.341,-3.4217],["La Aparecida",43.341,-3.4217],["Perujo, El (Ampuero)",43.341,-3.4217],["Solamaza",43.341,-3.4217],["Barcena, La (Ampuero)",43.341,-3.4217],["Ahedo (Ampuero)",43.341,-3.4217],["El Camino",43.341,-3.4217],["Santisteban",43.341,-3.4217],["Regada",43.341,-3.4217],["Rocillo (Ampuero)",43.341,-3.4217],["Pieragullano",43.35,-3.4333],["Bernales",43.3363,-3.4083],["Hoz De Marron",43.338,-3.4411],["Rascon",43.3323,-3.3903]],"39850":[["Bulco",43.3106,-3.448],["Udalla",43.3163,-3.4507],["Vear De Udalla",43.3133,-3.4494]],"39860":[["Casavieja (Rasines)",43.259,-3.529],["Vega, La (Rasines)",43.259,-3.529],["Helguera (Rasines)",43.259,-3.529],["Santa Cruz (Rasines)",43.259,-3.529],["Rocillo (Rasines)",43.259,-3.529],["Lombera",43.3184,-3.4046],["Ojebar",43.2928,-3.3908],["Cereceda",43.3195,-3.4146],["Torcollano",43.2834,-3.373],["La Edilla",43.3121,-3.4048],["Rasines",43.3047,-3.4287],["Fresno",43.313,-3.4457],["Villaparte",43.3068,-3.42],["El Cerro",43.2973,-3.4327]],"39880":[["Trebuesto",43.3344,-3.315],["La Altura",43.2261,-3.2714],["Iglesia, La (Valle De Villaverde)",43.2867,-3.2831],["Cabaña De La Sierra",43.2867,-3.2831],["La Capitana",43.2867,-3.2831],["Laiseca (V. De Trucios)",43.2867,-3.2831],["El Campo",43.2867,-3.2831],["Palacio (Valle De Villaverde)",43.2867,-3.2831],["Villanueva (Valle De Villaverde)",43.2867,-3.2831],["Mollinedo",43.2867,-3.2831],["Matanza, La (Valle De Villaverde)",43.2867,-3.2831],["Agüera De Trucios",43.2867,-3.2831],["Valle De Villaverde",43.2867,-3.2831],["Aguera",43.2867,-3.2831],["Los Hoyos",43.2867,-3.2831],["Llaguno",43.3015,-3.265]]};
+const DATOS_INICIALES = {"config":{"nave":{"lat":43.415,"lng":-3.937,"nombre":"Pol. Los Riegos, Puente Arce"},"salida":"09:30","fin":"18:00","comida":{"activa":true,"inicio":"14:00","minutos":60},"durVisita":30,"durLlamada":10,"minAparcar":5,"factorCarretera":1.3,"factorTrafico":1,"velUrbana":22,"velCarretera":60,"velAutovia":85,"comerciales":[{"id":"c1","nombre":"Comercial 1"},{"id":"c2","nombre":"Comercial 2"},{"id":"c3","nombre":"Comercial 3"}]},"clientes":[{"id":1,"nombre":"Cascarilla","razon":"Santo Y Seña Gestion S.L.","dir":"C/ Rubio 14","cp":"39001","pob":"Santander","lat":43.4647,"lng":-3.8088,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":2,"nombre":"Sidrería Del Asón","razon":"Explotaciones De Hosteleria Caleta S.L.","dir":"C/ Juan José Ruano 5","cp":"39740","pob":"Santoña","lat":43.443,"lng":-3.4562,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"sidreriason@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":3,"nombre":"Restaurante Conchita Corconte S.L.","razon":"Restaurante Conchita Corconte S.L.","dir":"Calle Corconte S/N","cp":"39294","pob":"Campoo De Yuso","lat":43.0157,"lng":-3.9654,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":4,"desfase":0},{"id":8,"nombre":"Peña Candil Sl","razon":"Peña Candil Sl","dir":"Pl. Progreso, S/N","cp":"39009","pob":"Santander","lat":43.4543,"lng":-3.8167,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"pecandil@pecandil.es","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":10,"nombre":"Restaurante Los Arcos S.C.","razon":"Restaurante Los Arcos S.C.","dir":"Avenida Los Soportales","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":14,"nombre":"Rincón De Zeto","razon":"Norservicios Slu","dir":"Barrio La Vega 10","cp":"39793","pob":"Villaverde De Pontones","lat":43.4123,"lng":-3.7016,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":15,"nombre":"San Vicente 2023 Sl","razon":"San Vicente 2023 Sl","dir":"Marcelino Sanz De Santuola 12","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"mirapeix@jsder.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":17,"nombre":"Meson De Borleña Sl","razon":"Meson De Borleña Sl","dir":"Barrio Borleña","cp":"39699","pob":"Borleña","lat":43.2357,"lng":-3.9526,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":4,"desfase":0},{"id":19,"nombre":"La Económica","razon":"Mar De Noja SL","dir":"Avenida Ris 9","cp":"39180","pob":"Noja","lat":43.4834,"lng":-3.5246,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":28,"nombre":"Hotel Chiqui","razon":"Centenario99 Sl","dir":"Avd. Manuel García Lago 9","cp":"39005","pob":"Santander","lat":43.4703,"lng":-3.7889,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"compras@hotelchiqui.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":29,"nombre":"Restaurante Las Olas","razon":"La Maruca Sl","dir":"C/ Vital Alsar 31","cp":"39012","pob":"Santander","lat":43.4745,"lng":-3.798,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"olas320@hotmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":32,"nombre":"Restaurante La Inesperada","razon":"Hostelería Abionzo Sl","dir":"B. Raneo 23","cp":"39639","pob":"Abionzo","lat":43.2445,"lng":-3.8116,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":4,"desfase":0},{"id":34,"nombre":"La Costa Del Chonuco","razon":"N6Todos Sl","dir":"Avenida de la Libertad 48","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"asesoria@esmartconsulting.es","nota":"Dirección de envío: Avenida de la Libertad 48 39770 Laredo","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":38,"nombre":"Rte El Puerto De Santa Maria","razon":"Inversiones Castro Urdiales Sl","dir":"C/ Santa Maria Sn","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"info@asadorelpuerto.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":39,"nombre":"La Parientuca Bistrobar","razon":"Noelsilvales Restauración SL","dir":"C/ San Roque 148 Bajo 1","cp":"39526","pob":"Novales","lat":43.3793,"lng":-4.1815,"prec":"poblacion","rutaExcel":null,"tel":"942172627","email":"gooddaynoel3@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":40,"nombre":"La Radio","razon":"Maberasio S.L.","dir":"General Davila","cp":"39007","pob":"Santander","lat":43.4621,"lng":-3.8219,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":43,"nombre":"El Desfiladero","razon":"El Molino Tama SLL","dir":"Avenida Los Ciruelos 21","cp":"39011","pob":"Santander","lat":43.4558,"lng":-3.8434,"prec":"cp","rutaExcel":"RUTA 1","tel":"942332118","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":46,"nombre":"La Cofradía","razon":"Bahía De Castro Urdiales SL","dir":"C/ Belén 3","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":"942122432","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":47,"nombre":"The Hunters Tavern","razon":"Gastrohunter Sl","dir":"Barrio Santa Ana 6","cp":"39715","pob":"Hoznayo","lat":43.393,"lng":-3.6915,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":48,"nombre":"Rte Everest","razon":"Anchoas Y Conservas Pepin Sl","dir":"Avenida De La Libertad 52","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":51,"nombre":"La Prensa","razon":"Daymoramar S.L.","dir":"La Torre","cp":"39012","pob":"Santander","lat":43.4745,"lng":-3.798,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"tabernalaprensa@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":52,"nombre":"Restaurante Camarote, S.L.","razon":"Restaurante Camarote, S.L.","dir":"Avda. De La Libertad","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":"RUTA 2","tel":"942606707","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":53,"nombre":"Rte Celina Bonita","razon":"Celina Bonita Sc","dir":"C/Carrera 6","cp":"39330","pob":"Santillana Del Mar","lat":43.389,"lng":-4.1084,"prec":"poblacion","rutaExcel":"RUTA 4","tel":"667676758","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":54,"nombre":"Bazar Chen Wei","razon":"Chen Wei","dir":"Barrio Salas 6 Bajo I","cp":"39120","pob":"Liencres","lat":43.4626,"lng":-3.9272,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":57,"nombre":"Meson El Labrador","razon":"El Druida Dagda Sociedad Limitada","dir":"Barrio La Cruz, 4","cp":"39120","pob":"Pielagos","lat":43.4451,"lng":-3.9279,"prec":"cp","rutaExcel":null,"tel":"927417958","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":58,"nombre":"Central Kitchen 2025 S.L.","razon":"Central Kitchen 2025 S.L.","dir":"Poligono El Campon Nave 22","cp":"39011","pob":"Peñacastillo","lat":43.447,"lng":-3.857,"prec":"aprox","rutaExcel":"RUTA 1","tel":"722475610","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":59,"nombre":"Meson El Bodegon","razon":"Bodegon Boria Sl","dir":"Avd De Los Soportales 17","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":null,"tel":"942710043","email":"jjbilbaomoli@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":61,"nombre":"Bar El Tunel Sl","razon":"Bar El Tunel Sl","dir":"Menendez Pelayo 48","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"bareltunelsl@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":64,"nombre":"Hotel Cabrojo Sl","razon":"Hotel Cabrojo Sl","dir":"Barrio Cabrojo, 74","cp":"39500","pob":"Cabezon De La Sal","lat":43.3082,"lng":-4.2357,"prec":"poblacion","rutaExcel":"RUTA 4","tel":"942708534","email":"valledecabezon@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":66,"nombre":"Supermercado Cano","razon":"Degalizano Sl","dir":"Calle La Iglesia 19","cp":"39160","pob":"Galizano","lat":43.4684,"lng":-3.6716,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"supermercadocano@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":67,"nombre":"Restaurante El Tronky","razon":"Guevara Peña Sl","dir":"Bºevaristo Lavin Nº146- A","cp":"39130","pob":"Pedreña","lat":43.4402,"lng":-3.7691,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":72,"nombre":"Café Bar El Recreo","razon":"Roiz Ortiz Hostelería Sl","dir":"Mata Linares 11","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":null,"tel":"942217234","email":"roizortizhost@gmail.com","nota":"Dirección de envío: Mata Linares 11, 39540 San Vicente de la Barquera","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":77,"nombre":"Distinta Del Cantábrico, Sl","razon":"Distinta Del Cantábrico, Sl","dir":"Calle Cubo, 2","cp":"39001","pob":"Santander","lat":43.4647,"lng":-3.8088,"prec":"cp","rutaExcel":"RUTA 1","tel":"649870909","email":"info@distintasantander.es","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":78,"nombre":"Casa Ajero","razon":"Desarrollos Pereda Sl","dir":"Daoiz Y Velarde","cp":"39001","pob":"Santander","lat":43.4647,"lng":-3.8088,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":80,"nombre":"Asador El Pecio","razon":"Gastro Arrocería Aida Sl","dir":"Edificio Puerto Pesquero Sn","cp":"39740","pob":"Santoña","lat":43.443,"lng":-3.4562,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"adm@gastroarroceriaaida.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":81,"nombre":"Brasserie Turcano","razon":"Md Castro Sl","dir":"C/ Ardigales,38","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":83,"nombre":"La Cuesta Del Infierno Sl","razon":"La Cuesta Del Infierno SL","dir":"C/ Menendez Pelayo 32","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":85,"nombre":"La Pirula","razon":"La Repirula SL","dir":"C/ Peña Herbosa 21 Bajo","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":86,"nombre":"Rte Cañadío","razon":"Gastronómico Cañadío Sl","dir":"C/ Gómez Oreña 15","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"canadiosantander@grupocanadio.com","nota":"Facturación Mensual","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":87,"nombre":"Palacio De Arce","razon":"De Arce Hotel Y Eventos Sl","dir":"Barrio La Soledad, 9","cp":"39470","pob":"Piélagos","lat":43.4135,"lng":-3.936,"prec":"aprox","rutaExcel":"RUTA 4","tel":null,"email":"maria.bueno@palaciodearce.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":88,"nombre":"Marques Viesgo S.L.","razon":"Marques Viesgo S.L.","dir":"Calle Manuel Perez Mazo S/N","cp":"39670","pob":"Puente Viesgo","lat":43.2967,"lng":-3.9633,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"elmarquescontabilidad@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":4,"desfase":0},{"id":89,"nombre":"Las Teresitas","razon":"Hostelería Casa Luciano SL","dir":"Edic. Capitanía De Marina Del Cantábrico S/N","cp":"39600","pob":"Camargo","lat":43.43,"lng":-3.832,"prec":"aprox","rutaExcel":null,"tel":"942365061","email":"hosteleriacasaluciano@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":90,"nombre":"La Vinateria","razon":"Orconera Delicatesen SL","dir":"Calle Tomás Bretón 5","cp":"39610","pob":"Astillero","lat":43.4009,"lng":-3.8205,"prec":"poblacion","rutaExcel":"RUTA 2","tel":"676944860","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":92,"nombre":"Carteria Sc","razon":"Carteria Sc","dir":"Calle Camino Real, 49","cp":"39311","pob":"Cartes","lat":43.3245,"lng":-4.0696,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":98,"nombre":"Gutierrez Llar 2024 S.L.","razon":"Gutierrez Llar 2024 S.L.","dir":"Calle La Candina 13","cp":"39012","pob":"Santander","lat":43.447,"lng":-3.826,"prec":"aprox","rutaExcel":"RUTA 1","tel":null,"email":"zirolive@hotmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":100,"nombre":"Restaurante Bonito Verde","razon":"Bonito Verde Sc","dir":"Paseo De La Marina Española 10","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":102,"nombre":"Bodega Sidro Sl","razon":"Bodega Sidro Sl","dir":"C El Muelle 9","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"moreno.liendo@hotmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":103,"nombre":"Casa Paulino","razon":"Buelna Norte Sl","dir":"Bº El Corral 66","cp":"39408","pob":"Los Corrales De Buelna","lat":43.264,"lng":-4.064,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"buelnanorte_@hotmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":104,"nombre":"Cuchara Canalla","razon":"Basic By Basic Sl","dir":"C/ San Jose 17","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"cucharacanalla@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":105,"nombre":"Donde Marce","razon":"Churiborcio Sl","dir":"C/ Aro 7","cp":"39740","pob":"Santoña","lat":43.443,"lng":-3.4562,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":107,"nombre":"Vermuteria De Vicio Sl","razon":"Vermuteria De Vicio Sl","dir":"C Cadiz N18 Bajo","cp":"39002","pob":"Santander","lat":43.4608,"lng":-3.8088,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":108,"nombre":"Gambrinus Santander","razon":"Samelar Cantabria Sl","dir":"Av. De Los Castros, 153","cp":"39012","pob":"Santander","lat":43.4745,"lng":-3.798,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":111,"nombre":"La Parrilla De Prellezo","razon":"Rte Parrilla Del Norte Sl","dir":"Barrio Prellezo 11","cp":"39548","pob":"Prellezo - Val De San Vicente","lat":43.3831,"lng":-4.4365,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"control@razanoble.es","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":113,"nombre":"Hotel Gerra","razon":"Gerra Mayor Sl","dir":"Barrio Gerra, Los Llaos","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"info@hgerramayor.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":114,"nombre":"Restaurante Del Puerto","razon":"Restaurantedelpuerto Sl","dir":"Hernán Cortés 63","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":"Lunes cerrado.","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[1],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":119,"nombre":"Doméstica Santander","razon":"Doméstico 19 Sl","dir":"C/ Hernán Cortés 34, Bajo","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"domesticasantander@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":120,"nombre":"Royal Iii","razon":"Sanchez Somohano Sl","dir":"Carretera Unquera 2","cp":"39569","pob":"Val De  San Vicente","lat":43.3607,"lng":-4.5068,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"facturacion@corbatasroyal.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":123,"nombre":"Bar Donde Nando","razon":"Endondenando SL","dir":"C/ Joaquín Costa 43 - Local 2","cp":"39005","pob":"Santander","lat":43.4703,"lng":-3.7889,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":124,"nombre":"Parrilla Ginés","razon":"Indama Restauracion Sl","dir":"Av Catañeda 15 Bajo","cp":"39005","pob":"Santander","lat":43.4703,"lng":-3.7889,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"restauranteparrillagines@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":128,"nombre":"La Nueva Darsena De Suances Sl","razon":"La Nueva Darsena De Suances SL","dir":"C/ Del Muelle 23","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"contabilidad@gruponuevadarsena.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":129,"nombre":"Vinoteca El Local","razon":"Sevelvin Slu","dir":"C/ Madrid 9 Bajo","cp":"39009","pob":"Santander","lat":43.4543,"lng":-3.8167,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"vinoteca.el.local@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":3,"desfase":0},{"id":130,"nombre":"Carrefour Express","razon":"Express Puente Arce Sl","dir":"Urb Santa Maria 1","cp":"39478","pob":"Arce","lat":43.4129,"lng":-3.9393,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":131,"nombre":"Ultramarinos Costa Quebrada","razon":"Costa Quebrada Sl","dir":"Bº Salas","cp":"39120","pob":"Liencres","lat":43.4626,"lng":-3.9272,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":132,"nombre":"Coviran","razon":"Supermercado Margarita S.L.","dir":"Avenida Cantabria","cp":"39012","pob":"Santander","lat":43.4745,"lng":-3.798,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":134,"nombre":"Restaurante Augusto Sc","razon":"Restaurante Augusto Sc","dir":"C/ Mercado, 1 Bajo","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":null,"tel":"942712040","email":"raugustofacturas24@outlook.es","nota":"Lunes cerrado.","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[1],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":143,"nombre":"Hosteria De Boo Sl","razon":"Hosteria De Boo Sl","dir":"Bº San Jose","cp":"39478","pob":"Boo De Pielagos","lat":43.431,"lng":-3.9459,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":4,"desfase":0},{"id":146,"nombre":"Cenador De Amos Sl","razon":"Cenador De Amos Sl","dir":"Plaza Del Sol, S/N","cp":"39793","pob":"Villaverde De Pontones","lat":43.4123,"lng":-3.7016,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":147,"nombre":"Restaurante Gele","razon":"Gele Mondage Sl","dir":"Eduardo Benot 4","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":"942221021","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":148,"nombre":"Quesucos Artesanos Cobo Sl","razon":"Quesucos Artesanos Cobo Sl","dir":"Paseo El Velasco, 39","cp":"39722","pob":"Lierganes","lat":43.3174,"lng":-3.7267,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"quesucoscobo@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":150,"nombre":"Eventos Pico Velasco Sl","razon":"Eventos Pico Velasco Sl","dir":"Barrio Angustina, S/N","cp":"39762","pob":"Carasa","lat":43.3711,"lng":-3.463,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"administracion@picovelasco.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":151,"nombre":"Velmor Ultramarinos Y Vino","razon":"Velar Y Sobrado, Sl","dir":"Calle Bilbao, 5","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":152,"nombre":"El Mastil","razon":"Ojancanero SLL","dir":"C/ Ataulfo Argenta 36","cp":"39004","pob":"Santander","lat":43.4646,"lng":-3.7918,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"ojancanero@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":153,"nombre":"Rte La Pinta","razon":"La Carabela Sc","dir":"C/ Comercial 31","cp":"39840","pob":"Ampuero","lat":43.3438,"lng":-3.4155,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":2,"desfase":0},{"id":156,"nombre":"Bar Chema","razon":"Bunga Poppy Sl","dir":"C/ San José 13","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":157,"nombre":"Pico Paloma Uchi Sl","razon":"Pico Paloma Uchi Sl","dir":"Avenida De Parayas N69","cp":"39600","pob":"Maliaño (Camargo)","lat":43.4185,"lng":-3.8364,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":163,"nombre":"Grupo Aregon Sl","razon":"Grupo Aregon Sl","dir":"Carretera General Sn","cp":"39792","pob":"Gajano","lat":43.4115,"lng":-3.7672,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":165,"nombre":"Pez Globo","razon":"La Mar De Suances SL","dir":"Calle Palencia 4","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"hola@hotellamardesuances.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":170,"nombre":"Hotel Juan De La Cosa","razon":"Astuy Berria Sl","dir":"Playa De Berria 14","cp":"39740","pob":"Santoña","lat":43.443,"lng":-3.4562,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":171,"nombre":"La Parra","razon":"Sagides Y Puertochico SL","dir":"C/ Ruamayor, 10","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"sagidesypuertochico@gmail.com","nota":"Dirección de entrega: Ruamayor 10 La Parra. Factura mensual.","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":172,"nombre":"La Surferia","razon":"Ciabolepane Sl","dir":"C/ Palencia 1","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"lasurferiasuances@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":177,"nombre":"La Repanocha","razon":"Restauración Y Hostelería Fernández Mateos Sl","dir":"C/ Rubio N 12 Bajo","cp":"39001","pob":"Santander","lat":43.4647,"lng":-3.8088,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":178,"nombre":"El Galeon","razon":"Rednatnassss S.L.","dir":"Barrio La Llosuca 22 Polg Trascueto","cp":"39600","pob":"Revilla De Camargo","lat":43.4064,"lng":-3.8662,"prec":"poblacion","rutaExcel":null,"tel":"942510214","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":179,"nombre":"Restaurante Los Infantes","razon":"Grupo Sardinero Gourmet S.L.","dir":"Av Maura Nº21 Bajo","cp":"39005","pob":"Santander","lat":43.4703,"lng":-3.7889,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":5,"desfase":0},{"id":181,"nombre":"Restaurante Los Gamos Sl","razon":"Restaurante Los Gamos Sl","dir":"C Aurelio Diez","cp":"39470","pob":"Pielagos","lat":43.3529,"lng":-3.9503,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":185,"nombre":"La Cassette","razon":"Pick At Castro S.L.","dir":"C/ Ardigales 36","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":186,"nombre":"El Bombin","razon":"Barquito Castro S.L.","dir":"Jardines N2 Planta Baja","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":187,"nombre":"La Clandestina","razon":"Dcastro 2022 S.L.","dir":"C/ La Rua N 21","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0},{"id":191,"nombre":"Candelagrupo De Retauracion S.L.","razon":"Candelagrupo De Retauracion S.L.","dir":"C/ Fuente Nueva , 7 Puerta E5","cp":"39540","pob":"San Vicente De La Barquera","lat":43.3851,"lng":-4.3993,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"candelagrupoderestauracion@gmail.com ","nota":"martes cerrado ","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[2],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":192,"nombre":"Corla","razon":"Comercial Rafael Lopez Alonso Sl","dir":"C/ Concejo Sn (Pol. Candina)","cp":"39011","pob":"Santander","lat":43.4465,"lng":-3.825,"prec":"aprox","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":195,"nombre":"Sidreria Pegollu","razon":"El Pigazu Sl","dir":"Peñas Redondas 17","cp":"39010","pob":"Santander","lat":43.46,"lng":-3.8239,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":197,"nombre":"La Reina Del Cantábrico","razon":"Ute Nikomai, Maite Perez Alonso Y Nicolás Escobedo Fuentes, Unión Temporal De Empresas Ley 18/82 Numero 1","dir":"C Buciero Sn","cp":"39740","pob":"Santoña","lat":43.443,"lng":-3.4562,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":"info@reinadelcantábrico.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":5,"desfase":0},{"id":198,"nombre":"Restaurante El Remedio  Slu","razon":"Restaurante El Remedio  Slu","dir":"Barrio Liandres Sn Ruiloba","cp":"39527","pob":"Ruiloba","lat":43.3853,"lng":-4.2516,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"administración@restauranteelremedio.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":203,"nombre":"Restaurante Lumen","razon":"Hosteleria  Pereda S.L.","dir":"Edificio Fato. C/ Ataulfo Argenta.","cp":"39004","pob":"Santander","lat":43.4646,"lng":-3.7918,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":"g.garcia@hosteleriapereda.com ","nota":"Dirección de entrega: Edificio Fato. C/ Ataulfo Argenta. CP. 39004 Santander ","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":1,"desfase":0},{"id":204,"nombre":"Piston Capital S.L.","razon":"Piston Capital S.L.","dir":"Urb Las Dalias 9","cp":"39100","pob":"Santa Cruz De Bezana","lat":43.4437,"lng":-3.9032,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":2,"desfase":0},{"id":206,"nombre":"La Abacería De La Sal","razon":"Sal Y Pimienta De Cabezón Slu","dir":"Plaza Ángel De La Bodega 4","cp":"39500","pob":"Cabezón De La Sal","lat":43.3082,"lng":-4.2357,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"correo@lasaldecabezon.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":1,"desfase":0},{"id":208,"nombre":"Restaurante La Duna Nueva","razon":"Grupo Labaro Gastronomia Slu","dir":"Paseo De La Marina, 10","cp":"39340","pob":"Suances","lat":43.4277,"lng":-4.0426,"prec":"poblacion","rutaExcel":"RUTA 4","tel":"942223722","email":"info.grupolabaro@gmail.com ; asesoria@blancotero.es","nota":"Dirección de entrega: Paseo de la Marina, 10. 39340 Suances","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":5,"desfase":0},{"id":209,"nombre":"La Abaceria De Secretos De Chef Sc","razon":"La Abaceria De Secretos De Chef Sc","dir":"Calle Marcelino Sanz De Santuola 11 Bajo","cp":"39003","pob":"Santander","lat":43.4645,"lng":-3.8016,"prec":"cp","rutaExcel":"RUTA 1","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c2","dia":4,"desfase":0},{"id":210,"nombre":"Ismano Gastrobar Slu","razon":"Ismano Gastrobar Slu","dir":"C/ Mayor, 1","cp":"39200","pob":"Reinosa","lat":42.9893,"lng":-4.1442,"prec":"poblacion","rutaExcel":null,"tel":"942750463","email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":3,"desfase":0},{"id":211,"nombre":"El Horno Viernoles Sl","razon":"El Horno Viernoles Sl","dir":"Barrio De Hoz 36","cp":"39315","pob":"Viérnoles (Torrelavega)","lat":43.3206,"lng":-4.0542,"prec":"poblacion","rutaExcel":"RUTA 4","tel":null,"email":"elhornoviernoles@gmail.com","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":215,"nombre":"Venta De Somo","razon":"Norservicios Slu","dir":"Barrio La Vega 10","cp":"39793","pob":"Villaverde De Pontones","lat":43.4123,"lng":-3.7016,"prec":"poblacion","rutaExcel":null,"tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":1,"desfase":0},{"id":216,"nombre":"Carnicería Lábaro","razon":"Grupo Labaro Gastronomia Slu","dir":"C/ La Llama, 3","cp":"39300","pob":"Torrelavega","lat":43.3486,"lng":-4.0509,"prec":"poblacion","rutaExcel":"RUTA 4","tel":"942802277","email":"info.grupolabaro@gmail.com ; asesoria@blancotero.es","nota":"Dirección de entrega: C/ La Llama, 3. 39300 Torrelavega","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":217,"nombre":"Asador Lábaro Y Paladar Y Tomar Mercaurante","razon":"Grupo Labaro Gastronomia Slu","dir":"Plaza De Las Autonomías, 3","cp":"39300","pob":"Torrelavega","lat":43.3486,"lng":-4.0509,"prec":"poblacion","rutaExcel":"RUTA 4","tel":"942794946","email":"info.grupolabaro@gmail.com ; asesoria@blancotero.es","nota":"Dirección de entrega: Plaza de las Autonomías, 3. 39300 Torrelavega.","frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c3","dia":2,"desfase":0},{"id":218,"nombre":"La Loma Del Chonuco","razon":"N6Todos Sl","dir":"Avenida De La Libertad 48","cp":"39770","pob":"Laredo","lat":43.4146,"lng":-3.429,"prec":"poblacion","rutaExcel":null,"tel":null,"email":"asesoria@esmartconsulting.es","nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":4,"desfase":0},{"id":219,"nombre":"Sukara","razon":"Md Castro Sl","dir":"C/ Ardigales,40","cp":"39700","pob":"Castro Urdiales","lat":43.3829,"lng":-3.2204,"prec":"poblacion","rutaExcel":"RUTA 2","tel":null,"email":null,"nota":null,"frecuencia":1,"llamarEntreVisitas":true,"dur":null,"cerrado":[],"fijado":false,"activo":true,"comercial":"c1","dia":3,"desfase":0}]};
+const OUTLINE = [[-3.5902,43.5136],[-3.5463,43.5077],[-3.4978,43.4722],[-3.4309,43.462],[-3.4298,43.441],[-3.465,43.4446],[-3.4917,43.4248],[-3.4636,43.4313],[-3.4647,43.4039],[-3.4501,43.4361],[-3.4252,43.4132],[-3.3238,43.4192],[-3.3208,43.4028],[-3.2213,43.3939],[-3.2259,43.3876],[-3.2119,43.3748],[-3.1533,43.3533],[-3.1515,43.3069],[-3.2095,43.2835],[-3.2252,43.3089],[-3.2794,43.2901],[-3.3324,43.3019],[-3.3401,43.278],[-3.4491,43.2359],[-3.4176,43.1334],[-3.6035,43.1496],[-3.6124,43.1695],[-3.651,43.181],[-3.7047,43.1163],[-3.7549,43.1005],[-3.7646,43.081],[-3.847,43.0844],[-3.8318,43.0638],[-3.8499,43.0402],[-3.8907,43.0418],[-3.9093,43.0161],[-3.953,43.0001],[-3.991,42.9311],[-3.9737,42.9119],[-3.9296,42.9147],[-3.9335,42.8996],[-3.8671,42.9548],[-3.8306,42.9292],[-3.8668,42.8992],[-3.9078,42.9145],[-3.8929,42.8874],[-3.9243,42.8892],[-3.8975,42.8803],[-3.9148,42.8601],[-3.8798,42.8513],[-3.8637,42.8898],[-3.8348,42.8774],[-3.816,42.8106],[-3.862,42.7865],[-3.8944,42.8045],[-3.911,42.7684],[-3.9773,42.758],[-3.9997,42.769],[-4.0036,42.8314],[-4.0547,42.763],[-4.0813,42.7615],[-4.1052,42.793],[-4.1499,42.7893],[-4.1854,42.8173],[-4.1581,42.8377],[-4.1404,42.829],[-4.1261,42.8566],[-4.1499,42.8711],[-4.2142,42.8472],[-4.2402,42.9565],[-4.3485,42.9726],[-4.3981,43.0349],[-4.4476,43.0585],[-4.4628,43.0605],[-4.4757,43.0387],[-4.5209,43.0474],[-4.5584,43.0195],[-4.6061,43.0358],[-4.6381,43.0167],[-4.7228,43.0172],[-4.7433,43.0282],[-4.744,43.0564],[-4.7661,43.0556],[-4.7665,43.0745],[-4.8169,43.0927],[-4.8514,43.1259],[-4.8346,43.1575],[-4.8481,43.1781],[-4.7342,43.1899],[-4.7196,43.2365],[-4.7309,43.2573],[-4.6319,43.2677],[-4.6066,43.3006],[-4.5552,43.2881],[-4.5478,43.2687],[-4.5235,43.2782],[-4.5223,43.3358],[-4.5388,43.3559],[-4.5115,43.3937],[-4.3894,43.3899],[-4.3407,43.4059],[-4.328,43.3913],[-4.2803,43.388],[-4.1752,43.4011],[-4.0812,43.4383],[-3.9787,43.4409],[-3.9571,43.4558],[-3.9455,43.4711],[-3.8949,43.4708],[-3.7852,43.4918],[-3.7633,43.4672],[-3.8143,43.4495],[-3.8253,43.4517],[-3.8152,43.437],[-3.8307,43.4352],[-3.8037,43.4266],[-3.8227,43.4136],[-3.816,43.4018],[-3.7791,43.421],[-3.7913,43.4322],[-3.7761,43.4494],[-3.7653,43.4463],[-3.7461,43.4515],[-3.7772,43.4582],[-3.7346,43.4593],[-3.5902,43.5136]];
+const DIAS = ['', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+const DIAS_C = ['', 'L', 'M', 'X', 'J', 'V'];
+const FREQ = [[1, 'Semanal'], [2, 'Cada 2 semanas'], [4, 'Cada 4 semanas'], [0, 'Solo llamada']];
+const REP_COLORS = ['var(--r1)', 'var(--r2)', 'var(--r3)', 'var(--r4)', 'var(--r5)', 'var(--r6)'];
+const DEFAULT_CFG = {
+  nave: { lat: 43.4150, lng: -3.9370, nombre: 'Pol. Los Riegos, Puente Arce' },
+  salida: '09:30', fin: '18:00', comida: { activa: true, inicio: '14:00', minutos: 60 },
+  durVisita: 30, durLlamada: 10, minAparcar: 5, factorCarretera: 1.3, factorTrafico: 1,
+  velUrbana: 22, velCarretera: 60, velAutovia: 85,
+  comerciales: [{ id: 'c1', nombre: 'Comercial 1' }, { id: 'c2', nombre: 'Comercial 2' }, { id: 'c3', nombre: 'Comercial 3' }]
+};
+const S = { db: null, dl: null, clients: [], cfg: structuredClone(DEFAULT_CFG), cfgLoaded: false, clientsLoaded: false,
+  monday: Engine.mondayOf(new Date()), week: { cambios: {} }, weekUnsub: null, tab: 'dia', day: 1, repFilter: '', open: null, filtro: { q: '', rep: '', dia: '' }, propuesta: null, simN: null };
+try { const t = localStorage.getItem('rc_tab'); if (t) S.tab = t; } catch (e) {}
+try { const r = localStorage.getItem('rc_rep'); if (r) S.repFilter = r; } catch (e) {}
+{ const w = new Date().getDay(); if (w === 0 || w === 6) { const x = new Date(); x.setDate(x.getDate() + (w === 6 ? 2 : 1)); S.monday = Engine.mondayOf(x); S.day = 1; } else S.day = w; }
+
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const repIdx = id => Math.max(0, S.cfg.comerciales.findIndex(r => r.id === id));
+const repColor = id => S.cfg.comerciales.find(r => r.id === id)?.color || REP_COLORS[repIdx(id) % REP_COLORS.length];
+const repName = id => S.cfg.comerciales.find(r => r.id === id)?.nombre || 'Sin asignar';
+const fmtH = min => { min = Math.round(min); return Math.floor(min / 60) + ' h ' + String(min % 60).padStart(2, '0'); };
+const serial = () => Engine.weekSerial(S.monday);
+const wkey = () => Engine.weekKey(S.monday);
+const dateOf = d => { const x = new Date(S.monday); x.setDate(x.getDate() + d - 1); return x; };
+const fdate = d => d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2600); }
+function cfgFull() { return { ...DEFAULT_CFG, ...S.cfg, comida: { ...DEFAULT_CFG.comida, ...(S.cfg.comida || {}) }, nave: { ...DEFAULT_CFG.nave, ...(S.cfg.nave || {}) } }; }
+function addrOf(c) { return [c.dir, c.cp, c.pob, 'Cantabria'].filter(Boolean).join(', '); }
+function gmapsPlace(c) { return c.prec === 'exacta' ? `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}` : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((c.nombre || '') + ', ' + addrOf(c))}`; }
+function gmapsRoute(stops) {
+  const cfg = cfgFull(); const nave = `${cfg.nave.lat},${cfg.nave.lng}`;
+  const p = c => c.prec === 'exacta' ? `${c.lat},${c.lng}` : addrOf(c);
+  const links = []; let origin = nave; const list = stops.slice();
+  while (list.length) {
+    const chunk = list.splice(0, 9); const last = !list.length;
+    const dest = last ? nave : p(chunk[chunk.length - 1]);
+    const way = last ? chunk.map(p) : chunk.slice(0, -1).map(p);
+    links.push(`https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}` + (way.length ? `&waypoints=${encodeURIComponent(way.join('|'))}` : ''));
+    origin = last ? nave : p(chunk[chunk.length - 1]);
+  }
+  return links;
+}
+function geoFromCP(cp, pob) {
+  const list = CP_TABLE[String(cp).padStart(5, '0')]; if (!list) return null;
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').trim();
+  const p = norm(pob);
+  const hit = list.find(x => norm(x[0]) === p) || list.find(x => p && (norm(x[0]).includes(p) || p.includes(norm(x[0])))) || list[0];
+  return { lat: hit[1], lng: hit[2], prec: norm(hit[0]) === p ? 'poblacion' : 'cp' };
+}
+
+// ---------- Datos compartidos ----------
+// Almacén local (navegador): misma interfaz que la base de datos compartida.
+function localDB() {
+  const KEY = 'rutas_comerciales_datos_v1';
+  let store = null;
+  try { store = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { store = null; }
+  if (!store) { store = {}; for (const c of DATOS_INICIALES.clientes) store['clientes/c' + c.id] = c; store['config/general'] = DATOS_INICIALES.config; }
+  const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { toast('El navegador no permite guardar: exporta una copia de seguridad'); } };
+  persist();
+  const subs = new Set(); const notify = () => subs.forEach(f => f());
+  const snap = p => ({ id: p.split('/').pop(), exists: p in store, data: () => store[p], metadata: {} });
+  window.addEventListener('storage', e => { if (e.key === KEY && e.newValue) { store = JSON.parse(e.newValue); notify(); } });
+  return {
+    local: true,
+    dump: () => structuredClone(store),
+    load: obj => { store = obj; persist(); notify(); },
+    doc: p => ({ get: async () => snap(p), set: async d => { store[p] = JSON.parse(JSON.stringify(d)); persist(); setTimeout(notify, 0); }, delete: async () => { delete store[p]; persist(); setTimeout(notify, 0); },
+      onSnapshot: n => { const f = () => n(snap(p)); subs.add(f); setTimeout(f, 0); return () => subs.delete(f); } }),
+    collection: c => ({ onSnapshot: n => { const f = () => { const docs = Object.keys(store).filter(k => k.startsWith(c + '/') && k.split('/').length === 2).map(snap); n({ docs, size: docs.length, empty: !docs.length }); }; subs.add(f); setTimeout(f, 0); return () => subs.delete(f); } })
+  };
+}
+async function connect() {
+  let db = null;
+  try { db = await claude.use('db'); } catch (e) { db = null; }
+  try { S.dl = await claude.use('downloads'); } catch (e) { S.dl = null; }
+  if (!db) {
+    db = localDB(); const c = $('#conn'); c.hidden = false;
+    c.textContent = 'Los cambios se guardan en este navegador y este dispositivo. Para pasarlos a otro equipo, usa Gestión › Ajustes › Copia de seguridad.';
+  }
+  S.db = db;
+  db.collection('clientes').onSnapshot(snap => { S.clients = snap.docs.map(d => ({ ...d.data(), _doc: d.id })); S.clientsLoaded = true; render(); }, err => showErr(err));
+  db.doc('config/general').onSnapshot(snap => { if (snap.exists) S.cfg = { ...structuredClone(DEFAULT_CFG), ...snap.data() }; S.cfgLoaded = true; render(); }, err => showErr(err));
+  subscribeWeek();
+}
+function showErr(e) { const c = $('#conn'); c.hidden = false; c.textContent = 'Error de conexión con los datos compartidos (' + (e?.code || 'desconocido') + '). Recarga la página.'; }
+function subscribeWeek() {
+  if (!S.db) return; if (S.weekUnsub) S.weekUnsub();
+  const k = wkey(); S.week = { cambios: {} };
+  S.weekUnsub = S.db.doc('semanas/' + k).onSnapshot(snap => { if (wkey() !== k) return; S.week = snap.exists ? { cambios: {}, ...snap.data() } : { cambios: {} }; render(); }, err => showErr(err));
+}
+let writing = Promise.resolve();
+function queue(fn) { writing = writing.then(fn).catch(e => { toast('No se ha podido guardar: ' + (e?.code === 'not_granted' ? 'sin permiso de edición' : (e?.message || 'error'))); }); return writing; }
+function saveClient(c, patch) {
+  if (!S.db) return; Object.assign(c, patch);
+  const body = { ...c }; delete body._doc;
+  return queue(() => S.db.doc('clientes/' + (c._doc || ('c' + c.id))).set(body));
+}
+function saveWeek() { if (!S.db) return; const k = wkey(); const body = structuredClone(S.week); return queue(() => S.db.doc('semanas/' + k).set(body)); }
+function saveCfg() { if (!S.db) return; const body = structuredClone(S.cfg); return queue(() => S.db.doc('config/general').set(body)).then(() => toast('Ajustes guardados')); }
+
+// ---------- Cálculo ----------
+function enginePlan(clients, overrides, ser) {
+  const cfg = cfgFull();
+  return Engine.weekSummary(clients.filter(c => isFinite(c.lat)), cfg, ser ?? serial(), overrides ?? S.week.cambios);
+}
+function cycleSummary(clients, cfg) { // media de 4 semanas (ciclo de frecuencias 1/2/4)
+  let km = 0, h = 0, ex = 0, v = 0; const per = {};
+  for (let i = 0; i < 4; i++) {
+    const w = Engine.weekSummary(clients.filter(c => isFinite(c.lat)), cfg, serial() + i, {});
+    km += w.km; h += w.horas; ex += w.exceso; v += w.visitas;
+    for (const k in w.slots) { const [r] = k.split('|'); per[r] = per[r] || { km: 0, h: 0, v: 0, n: 0 }; per[r].km += w.slots[k].km; per[r].h += w.slots[k].total / 60; per[r].v += w.slots[k].visitas.length; }
+  }
+  for (const r in per) { per[r].km /= 4; per[r].h /= 4; per[r].v /= 4; per[r].n = clients.filter(c => c.comercial === r && c.activo !== false).length; }
+  return { km: km / 4, h: h / 4, ex: ex / 4, v: v / 4, per };
+}
+
+// ---------- Render ----------
+const TABS = ['dia', 'semana', 'clientes', 'reparto', 'ajustes'];
+function render() {
+  if (!TABS.includes(S.tab)) S.tab = 'dia';
+  document.querySelectorAll('nav [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === S.tab)));
+  for (const t of TABS) $('#v-' + t).hidden = t !== S.tab;
+  const v = $('#v-' + S.tab);
+  if (S.db && !S.clientsLoaded) { v.innerHTML = '<div class="empty-state">Cargando clientes…</div>'; return; }
+  if (!S.clients.length && S.tab !== 'ajustes') { v.innerHTML = `<div class="panel empty-state stack" style="align-items:center"><h3>Todavía no hay clientes</h3><p>Carga los ${DATOS_INICIALES.clientes.length} clientes empresa de Cantabria con su reparto inicial, o importa el Excel de clientes desde Gestión › Clientes.</p><button class="btn primary" id="seed-go">Cargar clientes iniciales</button></div>` + (S.tab === 'clientes' ? toolbarClientes() : ''); bindClientes(); $('#seed-go').onclick = seedInicial; return; }
+  ({ dia: renderDia, semana: renderSemana, clientes: renderClientes, reparto: renderReparto, ajustes: renderAjustes })[S.tab]();
+}
+function goWeek(d) {
+  if (d === 0) { S.monday = Engine.mondayOf(new Date()); S.day = todayIdx(); }
+  else { const x = new Date(S.monday); x.setDate(x.getDate() + 7 * d); S.monday = x; }
+  subscribeWeek(); render();
+}
+function todayIdx() { const w = new Date().getDay(); return w >= 1 && w <= 5 ? w : 1; }
+function bindWeekNav(root) { root.querySelectorAll('[data-wk]').forEach(b => b.onclick = () => goWeek(+b.dataset.wk)); }
+function visibleReps() { return S.cfg.comerciales.filter(r => !S.repFilter || r.id === S.repFilter); }
+
+// ---------- Barra de jornada (visual) ----------
+function axisRange(routes) {
+  const cfg = cfgFull(); const a = Engine.hm(cfg.salida);
+  const last = Math.max(Engine.hm(cfg.fin), ...routes.map(r => r.finMin || a));
+  return [a, Math.ceil((last + 15) / 60) * 60];
+}
+function segmentsOf(route) {
+  const segs = []; let prevOut = null; const cfg = cfgFull(); let n = 0;
+  for (const it of route.seq) {
+    if (it.pausa) { const s = Engine.hm(it.hora); segs.push({ k: 'pausa', a: s, b: s + it.min, t: 'Pausa para comer ' + it.hora }); prevOut = s + it.min; continue; }
+    n++; const ll = Engine.hm(it.llegada), sa = Engine.hm(it.salida);
+    segs.push({ k: 'viaje', a: ll - it.min, b: ll, t: Math.round(it.min) + ' min de viaje' });
+    segs.push({ k: 'visita', a: ll, b: sa, n, t: n + '. ' + it.stop.nombre + ' · ' + it.llegada + '–' + it.salida });
+    prevOut = sa;
+  }
+  if (prevOut != null && route.finMin) segs.push({ k: 'viaje', a: prevOut, b: route.finMin, t: 'Vuelta a la nave' });
+  return segs;
+}
+function jornadaBar(route, rep, range, opts = {}) {
+  const [A, B] = range; const pct = m => ((m - A) / (B - A) * 100).toFixed(2) + '%'; const w = (a, b) => ((b - a) / (B - A) * 100).toFixed(2) + '%';
+  const finCfg = Engine.hm(cfgFull().fin);
+  const segs = segmentsOf(route);
+  return `<div class="jb ${opts.small ? 'sm' : ''}" style="--c:${repColor(rep)}">
+    <div class="jb-track">${segs.map(s => `<span class="seg ${s.k}" style="left:${pct(s.a)};width:${w(s.a, s.b)}" title="${esc(s.t)}">${s.k === 'visita' && !opts.small && (s.b - s.a) / (B - A) > .035 ? s.n : ''}</span>`).join('')}
+      <i class="jb-fin" style="left:${pct(finCfg)}" title="Vuelta máxima ${cfgFull().fin}"></i></div></div>`;
+}
+function axisTicks(range) {
+  const [A, B] = range; let h = '';
+  for (let m = Math.ceil(A / 60) * 60; m <= B; m += 60) h += `<span class="${(m / 60) % 2 ? 'odd' : ''}" style="left:${((m - A) / (B - A) * 100).toFixed(2)}%">${String(m / 60).padStart(2, '0')}:00</span>`;
+  return `<div class="jb-axis">${h}</div>`;
+}
+function jbLegend() { return `<div class="legend small muted"><span class="row" style="gap:6px"><i class="lg visita"></i>Visita</span><span class="row" style="gap:6px"><i class="lg viaje"></i>Conduciendo</span><span class="row" style="gap:6px"><i class="lg pausa"></i>Comida</span><span class="row" style="gap:6px"><i class="lg fin"></i>Vuelta máxima ${esc(cfgFull().fin)}</span></div>`; }
+
+// ---------- DÍA (pantalla principal) ----------
+function renderDia() {
+  const v = $('#v-dia'); const plan = enginePlan(S.clients); const d = S.day;
+  const reps = visibleReps(); const routes = reps.map(r => plan.slots[r.id + '|' + d]);
+  const range = axisRange(routes);
+  const strip = [1, 2, 3, 4, 5].map(i => { const dt = dateOf(i); const isToday = dt.toDateString() === new Date().toDateString();
+    const nv = S.cfg.comerciales.reduce((s, r) => s + plan.slots[r.id + '|' + i].visitas.length, 0);
+    return `<button class="day ${isToday ? 'today' : ''}" aria-pressed="${i === d}" data-day="${i}"><span class="dn"><span class="lo">${DIAS[i]}</span><span class="sh">${DIAS[i].slice(0, 3)}</span></span><span class="dd">${dt.getDate()}</span><span class="dm">${dt.toLocaleDateString('es-ES', { month: 'short' })}${isToday ? ' · hoy' : ''}</span></button>`; }).join('');
+  const chips = `<div class="chips"><button class="chipbtn" aria-pressed="${!S.repFilter}" data-rep="">Todos</button>${S.cfg.comerciales.map(r => `<button class="chipbtn" aria-pressed="${S.repFilter === r.id}" data-rep="${r.id}"><span class="dot" style="background:${repColor(r.id)}"></span>${esc(r.nombre)}</button>`).join('')}</div>`;
+  let html = `<div class="daybar"><button class="btn ghost" data-wk="-1" aria-label="Semana anterior">‹</button><div class="days-strip">${strip}</div><button class="btn ghost" data-wk="1" aria-label="Semana siguiente">›</button></div>
+  <div class="row" style="justify-content:space-between">${chips}<button class="btn sm ghost" data-wk="0">Ir a hoy</button></div>
+  <section class="panel stack"><div class="row" style="justify-content:space-between"><h2>${DIAS[d]} ${dateOf(d).getDate()} de ${dateOf(d).toLocaleDateString('es-ES', { month: 'long' })}</h2>${jbLegend()}</div>
+    <div class="gantt">${reps.map((r, i) => { const rt = routes[i]; return `<button class="g-row" data-goto="${r.id}"><span class="g-name"><span class="dot" style="background:${repColor(r.id)}"></span>${esc(r.nombre)}</span>${rt.seq.length ? jornadaBar(rt, r.id, range) : '<span class="g-empty">Sin visitas</span>'}<span class="g-end mono">${rt.fin || '—'}</span></button>`; }).join('')}
+    <div class="g-row axis"><span></span>${axisTicks(range)}<span></span></div></div></section>
+  <div class="cards c${Math.min(3, reps.length)}">${reps.map((r, i) => repCard(r, routes[i], d)).join('')}</div>
+  <section class="panel stack"><h3>Mapa del día</h3><div class="map">${mapDay(reps, routes)}</div></section>`;
+  v.innerHTML = html; bindWeekNav(v);
+  v.querySelectorAll('[data-day]').forEach(b => b.onclick = () => { S.day = +b.dataset.day; render(); });
+  v.querySelectorAll('.chipbtn').forEach(b => b.onclick = () => { S.repFilter = b.dataset.rep; try { localStorage.setItem('rc_rep', S.repFilter); } catch (e) {} render(); });
+  v.querySelectorAll('[data-goto]').forEach(b => b.onclick = () => document.getElementById('card-' + b.dataset.goto)?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  v.querySelectorAll('[data-stop]').forEach(b => b.onclick = () => { S.open = S.open === b.dataset.stop ? null : b.dataset.stop; render(); });
+  v.querySelectorAll('[data-ch]').forEach(b => b.onclick = () => change(b.dataset.ch, b.dataset.id, b.dataset.slot));
+}
+function repCard(r, route, d) {
+  const cfg = cfgFull(); const slot = r.id + '|' + d;
+  const stops = route.seq.filter(x => !x.pausa).map(x => x.stop);
+  const links = stops.length ? gmapsRoute(stops) : [];
+  const cierre = stops.some(c => (c.cerrado || []).includes(d));
+  let n = 0;
+  const list = route.seq.map(it => {
+    if (it.pausa) return `<li class="tl pause"><span class="t mono">${it.hora}</span><span class="pip"></span><span>Comida · ${it.min} min</span></li>`;
+    n++; const c = it.stop; const key = slot + '|' + c.id; const open = S.open === key; const o = (S.week.cambios || {})[String(c.id)];
+    const closed = (c.cerrado || []).includes(d);
+    return `<li class="tl ${open ? 'open' : ''}"><span class="t mono">${it.llegada}</span><span class="pip num-pip">${n}</span>
+      <div class="tl-body"><button class="tl-head" data-stop="${esc(key)}" aria-expanded="${open}"><b>${esc(c.nombre)}</b><span class="muted">${esc(c.pob || '')}</span>${closed ? '<span class="chip warn">Cierra hoy</span>' : ''}${o ? '<span class="chip">Cambio</span>' : ''}</button>
+      ${open ? `<div class="tl-more"><div class="small muted">${esc(addrOf(c))}</div>${c.tel ? `<div class="small">Tel. <span class="mono">${esc(c.tel)}</span></div>` : ''}${c.nota ? `<div class="small muted">Nota: ${esc(c.nota)}</div>` : ''}
+        <div class="small muted mono">${Math.round(it.min)} min de viaje · ${it.km.toFixed(1)} km · sale ${it.salida}</div>
+        <div class="acts"><a class="btn sm" href="${gmapsPlace(c)}" target="_blank" rel="noopener">Ver en mapa</a><button class="btn sm" data-ch="llamada" data-id="${esc(c.id)}" data-slot="${slot}">Pasar a llamada</button><button class="btn sm" data-ch="mover" data-id="${esc(c.id)}" data-slot="${slot}">Mover…</button><button class="btn sm" data-ch="omitir" data-id="${esc(c.id)}" data-slot="${slot}">Quitar esta semana</button>${o ? `<button class="btn sm ghost" data-ch="reset" data-id="${esc(c.id)}" data-slot="${slot}">Deshacer</button>` : ''}</div></div>` : ''}</div></li>`;
+  }).join('');
+  return `<article class="rcard" id="card-${r.id}" style="--c:${repColor(r.id)}">
+    <header><span class="dot" style="background:${repColor(r.id)}"></span><h3>${esc(r.nombre)}</h3></header>
+    <div class="stats"><div><b>${route.visitas.length}</b><span>visitas</span></div><div><b>${route.llamadas.length}</b><span>llamadas</span></div><div><b>${Math.round(route.km)}</b><span>km</span></div><div><b class="${route.exceso ? 'bad' : ''}">${route.fin || '—'}</b><span>vuelta</span></div></div>
+    ${route.exceso ? `<div class="chip bad">Termina ${Math.round(route.exceso)} min tarde</div>` : ''}${cierre ? '<div class="chip warn">Hay clientes que cierran este día</div>' : ''}
+    ${links.length ? `<div class="row">${links.map((l, i) => `<a class="btn primary sm" href="${l}" target="_blank" rel="noopener">Ruta en Google Maps${links.length > 1 ? ' · tramo ' + (i + 1) : ''}</a>`).join('')}</div>` : ''}
+    ${route.seq.length ? `<ol class="timeline">${list}<li class="tl end"><span class="t mono">${route.fin}</span><span class="pip"></span><span class="muted">Vuelta a la nave</span></li></ol>` : '<p class="muted small">Sin visitas este día.</p>'}
+    <div class="calls"><h4>Llamadas</h4>${route.llamadas.length ? `<ul>${route.llamadas.map(c => { const o = (S.week.cambios || {})[String(c.id)]; return `<li><span><b>${esc(c.nombre)}</b> <span class="muted small">${esc(c.pob || '')}</span></span><span class="mono small">${esc(c.tel || 'Sin teléfono')}</span><span class="acts"><button class="btn sm" data-ch="visita" data-id="${esc(c.id)}" data-slot="${slot}">Pasar a visita</button>${o ? `<button class="btn sm ghost" data-ch="reset" data-id="${esc(c.id)}" data-slot="${slot}">Deshacer</button>` : ''}</span></li>`; }).join('')}</ul>` : '<p class="muted small">No hay llamadas.</p>'}</div>
+  </article>`;
+}
+function mapDay(reps, routes) {
+  const cfg = cfgFull(); const W = 720, H = 360; const nave = { lat: cfg.nave.lat, lng: cfg.nave.lng };
+  const all = [nave]; routes.forEach(r => r.seq.forEach(x => { if (!x.pausa) all.push(x.stop); }));
+  if (all.length < 3) all.push({ lat: nave.lat + .1, lng: nave.lng + .15 }, { lat: nave.lat - .1, lng: nave.lng - .15 });
+  const P = projector(all, W, H, 22);
+  const land = 'M' + OUTLINE.map(([lng, lat]) => P({ lat, lng }).map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mapa con las rutas del día"><path class="land" d="${land}"/>`;
+  const labels = new Set(); const seen = new Map(); const placed = [];
+  reps.forEach((r, i) => {
+    const seq = routes[i].seq.filter(x => !x.pausa).map(x => x.stop); if (!seq.length) return;
+    g += `<polyline points="${[nave, ...seq, nave].map(p => P(p).map(v => v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${repColor(r.id)}" stroke-width="2" stroke-linejoin="round" opacity=".8"/>`;
+    seq.forEach((c, j) => { const [x, y] = P(c); const k = x.toFixed(0) + ',' + y.toFixed(0); const n = seen.get(k) || 0; seen.set(k, n + 1);
+      const dx = (n % 4) * 8, dy = Math.floor(n / 4) * 8;
+      g += `<circle cx="${(x + dx).toFixed(1)}" cy="${(y + dy).toFixed(1)}" r="7.5" fill="${repColor(r.id)}" stroke="var(--surface)" stroke-width="2"><title>${esc(r.nombre)} · ${j + 1}. ${esc(c.nombre)}</title></circle><text x="${(x + dx).toFixed(1)}" y="${(y + dy + 3).toFixed(1)}" text-anchor="middle" class="pin">${j + 1}</text>`;
+      if (!labels.has(c.pob) && !placed.some(([px, py]) => Math.abs(px - x) < 70 && Math.abs(py - y) < 14)) { labels.add(c.pob); placed.push([x, y]); g += `<text x="${(x + 10).toFixed(1)}" y="${(y - 9).toFixed(1)}">${esc(c.pob)}</text>`; } });
+  });
+  const [nx, ny] = P(nave);
+  g += `<rect x="${nx - 6}" y="${ny - 6}" width="12" height="12" fill="var(--fg)" stroke="var(--surface)" stroke-width="2"/><text x="${nx + 9}" y="${ny + 16}" style="fill:var(--fg)">Nave</text></svg>`;
+  return g + '<p class="small muted">Ubicaciones aproximadas por población o código postal. Las líneas unen las paradas en orden; no siguen la carretera.</p>';
+}
+
+// ---------- SEMANA (totales) ----------
+function renderSemana() {
+  const v = $('#v-semana'); const cfg = cfgFull(); const plan = enginePlan(S.clients);
+  const nCambios = Object.keys(S.week.cambios || {}).length;
+  const overDays = Object.values(plan.slots).filter(s => s.exceso > 0).length;
+  const range = axisRange(Object.values(plan.slots));
+  const per = cfg.comerciales.map(r => { let km = 0, h = 0, vi = 0, ll = 0; for (let d = 1; d <= 5; d++) { const s = plan.slots[r.id + '|' + d]; km += s.km; h += s.total / 60; vi += s.visitas.length; ll += s.llamadas.length; } return { r, km, h, vi, ll }; });
+  const maxKm = Math.max(1, ...per.map(p => p.km));
+  let html = `<div class="row" style="justify-content:space-between"><div class="row"><button class="btn ghost" data-wk="-1" aria-label="Semana anterior">‹</button><h2>Semana ${esc(wkey().split('-W')[1])} · ${fdate(S.monday)} – ${fdate(dateOf(5))}</h2><button class="btn ghost" data-wk="1" aria-label="Semana siguiente">›</button><button class="btn sm ghost" data-wk="0">Esta semana</button></div>
+    <div class="row"><button class="btn sm" data-act="add-puntual">Añadir visita puntual</button><button class="btn sm" data-act="export-week">Exportar semana (CSV)</button></div></div>
+  <div class="kpis">
+    <div class="kpi"><div class="v">${Math.round(plan.km)}</div><div class="l">Km estimados</div></div>
+    <div class="kpi"><div class="v">${fmtH(plan.horas * 60)}</div><div class="l">Horas de jornada</div></div>
+    <div class="kpi"><div class="v">${plan.visitas} <small>/ ${plan.llamadas}</small></div><div class="l">Visitas / llamadas</div></div>
+    <div class="kpi"><div class="v" style="color:${overDays ? 'var(--bad)' : 'var(--ok)'}">${overDays}</div><div class="l">Días fuera de horario</div></div>
+  </div>
+  ${nCambios ? `<div class="row small muted">${nCambios} cambio(s) puntual(es) esta semana. <button class="btn sm" data-act="reset-week">Quitar cambios</button></div>` : ''}
+  <section class="panel stack"><div class="row" style="justify-content:space-between"><h3>Jornadas de la semana</h3>${jbLegend()}</div>
+    <p class="small muted">Cada barra es un día de un comercial, desde la salida hasta la vuelta a la nave. Pulsa una barra para abrir ese día.</p>
+    <div class="wk-grid">${cfg.comerciales.map(r => `<div class="wk-rep"><div class="wk-title"><span class="dot" style="background:${repColor(r.id)}"></span><b>${esc(r.nombre)}</b></div>
+      ${[1, 2, 3, 4, 5].map(d => { const s = plan.slots[r.id + '|' + d]; return `<button class="g-row wk" data-open="${r.id}|${d}"><span class="g-name small">${DIAS[d].slice(0, 3)} ${dateOf(d).getDate()}</span>${s.seq.length ? jornadaBar(s, r.id, range, { small: true }) : '<span class="g-empty">Sin visitas</span>'}<span class="g-end mono small">${s.visitas.length ? s.visitas.length + ' v · ' + Math.round(s.km) + ' km' : ''}</span></button>`; }).join('')}</div>`).join('')}
+      <div class="g-row axis"><span></span>${axisTicks(range)}<span></span></div></div></section>
+  <section class="panel stack"><h3>Por comercial</h3>
+    <div class="scroll-x"><table class="cmp"><thead><tr><th>Comercial</th><th>Km de la semana</th><th class="num">Horas</th><th class="num">Visitas</th><th class="num">Llamadas</th></tr></thead><tbody>
+    ${per.map(p => `<tr><td><span class="dot" style="background:${repColor(p.r.id)}"></span> ${esc(p.r.nombre)}</td><td><div class="hbar"><i style="width:${(p.km / maxKm * 100).toFixed(1)}%;background:${repColor(p.r.id)}"></i><span class="mono">${Math.round(p.km)}</span></div></td><td class="num mono">${p.h.toFixed(1)}</td><td class="num mono">${p.vi}</td><td class="num mono">${p.ll}</td></tr>`).join('')}
+    </tbody></table></div></section>`;
+  if (plan.unassigned.length) html += `<div class="notice">${plan.unassigned.length} cliente(s) sin comercial o día asignado: ${plan.unassigned.slice(0, 8).map(c => esc(c.nombre)).join(', ')}${plan.unassigned.length > 8 ? '…' : ''}. Asígnalos en Gestión › Clientes o usa Reparto.</div>`;
+  v.innerHTML = html; bindWeekNav(v);
+  v.querySelectorAll('[data-open]').forEach(b => b.onclick = () => { const [r, d] = b.dataset.open.split('|'); S.day = +d; S.repFilter = ''; S.tab = 'dia'; render(); window.scrollTo(0, 0); });
+  v.querySelector('[data-act=reset-week]')?.addEventListener('click', () => { S.week.cambios = {}; saveWeek(); render(); toast('Cambios de la semana eliminados'); });
+  v.querySelector('[data-act=add-puntual]').onclick = () => openPuntual();
+  v.querySelector('[data-act=export-week]').onclick = () => exportWeek(plan);
+}
+function change(kind, id, slot) {
+  const c = S.clients.find(x => String(x.id) === String(id)); if (!c) return;
+  const cam = S.week.cambios = S.week.cambios || {}; const k = String(id);
+  if (kind === 'reset') delete cam[k];
+  else if (kind === 'mover') return openMover(c, slot);
+  else cam[k] = { ...(cam[k] || {}), tipo: kind };
+  saveWeek(); render();
+}
+function openDrawer(html, onBind) {
+  const root = $('#drawer-root');
+  root.innerHTML = `<div class="scrim" data-close></div><aside class="drawer" role="dialog" aria-modal="true">${html}</aside>`;
+  root.querySelectorAll('[data-close]').forEach(b => b.onclick = () => root.innerHTML = '');
+  onBind && onBind(root.querySelector('.drawer'));
+  root.querySelector('.drawer input, .drawer select, .drawer button')?.focus();
+}
+function closeDrawer() { $('#drawer-root').innerHTML = ''; }
+function slotSelect(id, rep, day) {
+  return `<label class="f">Comercial<select id="${id}-rep">${S.cfg.comerciales.map(r => `<option value="${r.id}" ${r.id === rep ? 'selected' : ''}>${esc(r.nombre)}</option>`).join('')}</select></label>
+  <label class="f">Día<select id="${id}-dia">${[1, 2, 3, 4, 5].map(d => `<option value="${d}" ${d === +day ? 'selected' : ''}>${DIAS[d]}</option>`).join('')}</select></label>`;
+}
+function openMover(c, slot) {
+  const [rep, day] = slot.split('|');
+  openDrawer(`<div class="stack"><h2>Mover ${esc(c.nombre)}</h2><p class="muted small">Solo para la semana ${esc(wkey().split('-W')[1])}. Su día habitual no cambia.</p>
+    <div class="grid2">${slotSelect('mv', rep, day)}</div>
+    <label class="f">Tipo<select id="mv-tipo"><option value="visita">Visita</option><option value="llamada">Llamada</option></select></label>
+    <div class="row"><button class="btn primary" id="mv-ok">Mover esta semana</button><button class="btn" data-close>Cancelar</button></div></div>`, el => {
+    $('#mv-ok', el).onclick = () => { S.week.cambios[String(c.id)] = { tipo: $('#mv-tipo', el).value, comercial: $('#mv-rep', el).value, dia: +$('#mv-dia', el).value }; saveWeek(); closeDrawer(); render(); toast('Movido a ' + repName($('#mv-rep', el).value) + ', ' + DIAS[+$('#mv-dia', el).value] + ' (solo esta semana)'); };
+  });
+}
+function clientOptions() { return S.clients.slice().sort((a, b) => a.nombre.localeCompare(b.nombre)).map(c => `<option value="${esc(c.id)}">${esc(c.nombre)} · ${esc(c.pob || '')}</option>`).join(''); }
+function openPuntual() {
+  const rep = S.repFilter || S.cfg.comerciales[0]?.id, day = S.day || 1;
+  openDrawer(`<div class="stack"><h2>Visita puntual</h2><p class="muted small">Añade una visita solo para esta semana (por ejemplo, un cliente que normalmente es llamada).</p>
+    <label class="f">Cliente<select id="pu-c">${clientOptions()}</select></label>
+    <div class="grid2">${slotSelect('pu', rep, day)}</div>
+    <div class="row"><button class="btn primary" id="pu-ok">Añadir</button><button class="btn" data-close>Cancelar</button></div></div>`, el => {
+    $('#pu-c', el).onchange = () => { const c = S.clients.find(x => String(x.id) === $('#pu-c', el).value); if (c?.comercial) { $('#pu-rep', el).value = c.comercial; $('#pu-dia', el).value = c.dia || 1; } };
+    $('#pu-ok', el).onclick = () => { const id = $('#pu-c', el).value; S.week.cambios[id] = { tipo: 'visita', comercial: $('#pu-rep', el).value, dia: +$('#pu-dia', el).value }; saveWeek(); closeDrawer(); render(); toast('Visita añadida'); };
+  });
+}
+
+// ---------- Mapa SVG ----------
+function projector(pts, W, H, pad) {
+  const k = Math.cos(43.3 * Math.PI / 180);
+  let x0 = Math.min(...pts.map(p => p.lng)), x1 = Math.max(...pts.map(p => p.lng)), y0 = Math.min(...pts.map(p => p.lat)), y1 = Math.max(...pts.map(p => p.lat));
+  const mx = Math.max(.04, (x1 - x0) * .08), my = Math.max(.03, (y1 - y0) * .08); x0 -= mx; x1 += mx; y0 -= my; y1 += my;
+  const sx = (W - 2 * pad) / ((x1 - x0) * k), sy = (H - 2 * pad) / (y1 - y0), s = Math.min(sx, sy);
+  const ox = pad + ((W - 2 * pad) - (x1 - x0) * k * s) / 2, oy = pad + ((H - 2 * pad) - (y1 - y0) * s) / 2;
+  return p => [ox + (p.lng - x0) * k * s, oy + (y1 - p.lat) * s];
+}
+function mapSvg({ route, rep, all }) {
+  const cfg = cfgFull(); const W = 640, H = 380;
+  const nave = { lat: cfg.nave.lat, lng: cfg.nave.lng };
+  let pts;
+  if (route) pts = [nave, ...route.seq.filter(x => !x.pausa).map(x => x.stop)];
+  else pts = [nave, ...all.filter(c => isFinite(c.lat))];
+  if (pts.length < 3) pts = pts.concat([{ lat: nave.lat + .08, lng: nave.lng + .12 }, { lat: nave.lat - .08, lng: nave.lng - .12 }]);
+  const P = projector(route ? pts : OUTLINE.map(([lng, lat]) => ({ lat, lng })), W, H, 14);
+  const land = 'M' + OUTLINE.map(([lng, lat]) => P({ lat, lng }).map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mapa de ${route ? 'la ruta' : 'clientes por comercial'}"><path class="land" d="${land}"/>`;
+  if (route) {
+    const seq = route.seq.filter(x => !x.pausa).map(x => x.stop);
+    const line = [nave, ...seq, nave].map(p => P(p).map(v => v.toFixed(1)).join(',')).join(' ');
+    g += `<polyline points="${line}" fill="none" stroke="${repColor(rep)}" stroke-width="2.5" stroke-linejoin="round" opacity=".85"/>`;
+    const seen = new Map();
+    seq.forEach((c, i) => { const [x, y] = P(c); const key = x.toFixed(0) + ',' + y.toFixed(0); const n = seen.get(key) || 0; seen.set(key, n + 1);
+      const dx = n * 9; g += `<circle cx="${x + dx}" cy="${y}" r="9" fill="${repColor(rep)}" stroke="var(--surface)" stroke-width="2"/><text x="${x + dx}" y="${y + 3.5}" text-anchor="middle" style="fill:#fff;font-size:10px;font-weight:700">${i + 1}</text>`; });
+    const lab = new Set(); seq.forEach(c => { if (lab.has(c.pob)) return; lab.add(c.pob); const [x, y] = P(c); g += `<text x="${x + 12}" y="${y - 10}">${esc(c.pob)}</text>`; });
+  } else {
+    for (const c of all) { if (!isFinite(c.lat)) continue; const [x, y] = P(c); const jx = ((String(c.id).charCodeAt(0) * 37 + (+c.id || 0) * 13) % 9) - 4, jy = (((+c.id || 0) * 7) % 9) - 4;
+      g += `<circle cx="${(x + jx).toFixed(1)}" cy="${(y + jy).toFixed(1)}" r="4.5" fill="${c.comercial ? repColor(c.comercial) : 'var(--muted)'}" stroke="var(--surface)" stroke-width="1" opacity=".9"><title>${esc(c.nombre)} · ${esc(c.pob)} · ${esc(repName(c.comercial))} ${c.dia ? DIAS[c.dia] : ''}</title></circle>`; }
+    const towns = ['Santander', 'Torrelavega', 'Laredo', 'Castro Urdiales', 'San Vicente De La Barquera', 'Reinosa', 'Santoña', 'Suances'];
+    const done = new Set(); for (const c of all) { if (!towns.includes(c.pob) || done.has(c.pob)) continue; done.add(c.pob); const [x, y] = P(c); g += `<text x="${x + 7}" y="${y - 7}">${esc(c.pob.replace(' De La Barquera', ''))}</text>`; }
+  }
+  const [nx, ny] = P(nave);
+  g += `<rect x="${nx - 6}" y="${ny - 6}" width="12" height="12" fill="var(--fg)" stroke="var(--surface)" stroke-width="2"/><text x="${nx + 9}" y="${ny + 16}" style="fill:var(--fg)">Nave</text></svg>`;
+  return g + (route ? '<p class="small muted">Posiciones aproximadas por población o código postal. El trazado es el orden de visita, no la carretera.</p>' : '');
+}
+
+// ---------- Clientes ----------
+function toolbarClientes() {
+  return `<div class="row"><button class="btn primary" data-act="new">Añadir cliente</button>
+    <label class="btn" for="imp-file">Importar Excel</label><input id="imp-file" type="file" accept=".xlsx,.xls,.csv" hidden>
+    <button class="btn" data-act="export-cli">Exportar clientes (CSV)</button></div>`;
+}
+function bindClientes() {
+  const v = $('#v-clientes'); if (!v || S.tab !== 'clientes') return;
+  v.querySelector('[data-act=new]')?.addEventListener('click', () => openClient(null));
+  v.querySelector('#imp-file')?.addEventListener('change', e => importExcel(e.target.files[0]));
+  v.querySelector('[data-act=export-cli]')?.addEventListener('click', exportClients);
+}
+function freqLabel(f) { return (FREQ.find(x => x[0] === (f ?? 1)) || FREQ[0])[1]; }
+function renderClientes() {
+  const v = $('#v-clientes'); const f = S.filtro; const q = f.q.toLowerCase();
+  const list = S.clients.filter(c => (!q || (c.nombre + ' ' + c.pob + ' ' + c.razon + ' ' + c.id).toLowerCase().includes(q)) && (!f.rep || (f.rep === '-' ? !c.comercial : c.comercial === f.rep)) && (!f.dia || String(c.dia) === f.dia))
+    .sort((a, b) => (repIdx(a.comercial) - repIdx(b.comercial)) || ((a.dia || 9) - (b.dia || 9)) || (a.pob || '').localeCompare(b.pob || '') || a.nombre.localeCompare(b.nombre));
+  const aprox = S.clients.filter(c => c.prec !== 'exacta').length;
+  v.innerHTML = `<div class="row" style="justify-content:space-between"><h2>Clientes</h2>${toolbarClientes()}</div>
+    <div class="row"><input id="cf-q" placeholder="Buscar por nombre, población o código" value="${esc(f.q)}" style="flex:1;min-width:200px">
+      <select id="cf-rep"><option value="">Todos los comerciales</option>${S.cfg.comerciales.map(r => `<option value="${r.id}" ${f.rep === r.id ? 'selected' : ''}>${esc(r.nombre)}</option>`).join('')}<option value="-" ${f.rep === '-' ? 'selected' : ''}>Sin asignar</option></select>
+      <select id="cf-dia"><option value="">Todos los días</option>${[1, 2, 3, 4, 5].map(d => `<option value="${d}" ${f.dia === String(d) ? 'selected' : ''}>${DIAS[d]}</option>`).join('')}</select></div>
+    ${aprox ? `<p class="small muted">${aprox} clientes tienen la ubicación aproximada (centro de su población o código postal). Para más precisión, pega las coordenadas de Google Maps en la ficha del cliente.</p>` : ''}
+    <div class="tbl"><table><thead><tr><th>Cód.</th><th>Cliente</th><th>Población</th><th>Comercial</th><th>Día</th><th>Frecuencia</th><th>Min</th><th></th></tr></thead><tbody>
+    ${list.map(c => `<tr data-id="${esc(c.id)}" style="${c.activo === false ? 'opacity:.5' : ''}"><td class="mono small">${esc(c.id)}</td>
+      <td><b>${esc(c.nombre)}</b>${c.fijado ? ' <span class="chip">Fijado</span>' : ''}${(c.cerrado || []).length ? ` <span class="chip warn">Cierra ${c.cerrado.map(d => DIAS_C[d]).join(',')}</span>` : ''}<div class="small muted">${esc(c.dir || '')}</div></td>
+      <td>${esc(c.pob || '')}</td>
+      <td><select data-f="comercial" aria-label="Comercial"><option value="">—</option>${S.cfg.comerciales.map(r => `<option value="${r.id}" ${c.comercial === r.id ? 'selected' : ''}>${esc(r.nombre)}</option>`).join('')}</select></td>
+      <td><select data-f="dia" aria-label="Día"><option value="">—</option>${[1, 2, 3, 4, 5].map(d => `<option value="${d}" ${c.dia === d ? 'selected' : ''}>${DIAS_C[d]}</option>`).join('')}</select></td>
+      <td><select data-f="frecuencia" aria-label="Frecuencia">${FREQ.map(([n, l]) => `<option value="${n}" ${(c.frecuencia ?? 1) === n ? 'selected' : ''}>${l}</option>`).join('')}</select></td>
+      <td class="mono">${c.dur || cfgFull().durVisita}</td>
+      <td><button class="btn sm" data-edit>Ficha</button></td></tr>`).join('')}
+    </tbody></table></div>`;
+  $('#cf-q').oninput = e => { S.filtro.q = e.target.value; const pos = e.target.selectionStart; render(); const i = $('#cf-q'); i.focus(); i.setSelectionRange(pos, pos); };
+  $('#cf-rep').onchange = e => { S.filtro.rep = e.target.value; render(); };
+  $('#cf-dia').onchange = e => { S.filtro.dia = e.target.value; render(); };
+  v.querySelectorAll('tr[data-id]').forEach(tr => {
+    const c = S.clients.find(x => String(x.id) === tr.dataset.id);
+    tr.querySelectorAll('select[data-f]').forEach(s => s.onchange = () => { const k = s.dataset.f; const val = s.value === '' ? null : (k === 'comercial' ? s.value : +s.value); saveClient(c, { [k]: val }); toast('Guardado'); });
+    tr.querySelector('[data-edit]').onclick = () => openClient(c);
+  });
+  bindClientes();
+}
+function openClient(c) {
+  const isNew = !c; c = c || { id: '', nombre: '', dir: '', cp: '', pob: '', frecuencia: 1, llamarEntreVisitas: true, activo: true, cerrado: [] };
+  const cfg = cfgFull();
+  openDrawer(`<div class="stack"><h2>${isNew ? 'Nuevo cliente' : esc(c.nombre)}</h2>
+    <div class="grid2"><label class="f">Código<input id="ec-id" value="${esc(c.id)}" ${isNew ? '' : 'disabled'}></label><label class="f">Teléfono<input id="ec-tel" value="${esc(c.tel || '')}"></label></div>
+    <label class="f">Nombre comercial<input id="ec-nombre" value="${esc(c.nombre)}"></label>
+    <label class="f">Dirección de visita<input id="ec-dir" value="${esc(c.dir || '')}"></label>
+    <div class="grid2"><label class="f">CP<input id="ec-cp" value="${esc(c.cp || '')}" inputmode="numeric"></label><label class="f">Población<input id="ec-pob" value="${esc(c.pob || '')}"></label></div>
+    <label class="f">Coordenadas (pega "lat, lng" de Google Maps)<input id="ec-coord" value="${isFinite(c.lat) ? c.lat + ', ' + c.lng : ''}" placeholder="43.4623, -3.8099"></label>
+    <p class="small muted" id="ec-prec">${c.prec === 'exacta' ? 'Ubicación exacta.' : isFinite(c.lat) ? 'Ubicación aproximada (' + (c.prec === 'cp' ? 'código postal' : 'población') + ').' : 'Se calcula desde el CP al guardar.'}</p>
+    <div class="grid2">${slotSelect('ec', c.comercial || '', c.dia || '')}</div>
+    ${isNew ? '<label class="row small"><input type="checkbox" id="ec-auto" checked> Asignar automáticamente al comercial y día que menos tiempo añade</label>' : ''}
+    <div class="grid2"><label class="f">Frecuencia de visita<select id="ec-freq">${FREQ.map(([n, l]) => `<option value="${n}" ${(c.frecuencia ?? 1) === n ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label class="f">Duración visita (min)<input type="number" id="ec-dur" min="5" max="240" value="${c.dur || cfg.durVisita}"></label></div>
+    <label class="row small"><input type="checkbox" id="ec-llam" ${c.llamarEntreVisitas !== false ? 'checked' : ''}> Llamar las semanas que no hay visita</label>
+    <div class="f"><span class="small muted">Días que cierra</span><div class="days">${[1, 2, 3, 4, 5].map(d => `<label><input type="checkbox" data-cerr="${d}" ${(c.cerrado || []).includes(d) ? 'checked' : ''}>${DIAS_C[d]}</label>`).join('')}</div></div>
+    <label class="row small"><input type="checkbox" id="ec-fij" ${c.fijado ? 'checked' : ''}> Fijar comercial y día (el reparto automático no lo moverá)</label>
+    <label class="row small"><input type="checkbox" id="ec-act" ${c.activo !== false ? 'checked' : ''}> Cliente activo</label>
+    <label class="f">Nota<textarea id="ec-nota" rows="2">${esc(c.nota || '')}</textarea></label>
+    ${c.rutaExcel ? `<p class="small muted">Ruta en el Excel original: ${esc(c.rutaExcel)}</p>` : ''}
+    <p class="small" id="ec-err" style="color:var(--bad)"></p>
+    <div class="row"><button class="btn primary" id="ec-ok">Guardar</button><button class="btn" data-close>Cancelar</button></div></div>`, el => {
+    if (isNew) { $('#ec-rep', el).insertAdjacentHTML('afterbegin', '<option value="" selected>—</option>'); $('#ec-dia', el).insertAdjacentHTML('afterbegin', '<option value="" selected>—</option>'); }
+    $('#ec-ok', el).onclick = () => {
+      const g = id => $(id, el).value.trim();
+      const patch = { nombre: g('#ec-nombre'), dir: g('#ec-dir'), cp: g('#ec-cp'), pob: g('#ec-pob'), tel: g('#ec-tel') || null, frecuencia: +g('#ec-freq'), dur: +g('#ec-dur') || null,
+        llamarEntreVisitas: $('#ec-llam', el).checked, fijado: $('#ec-fij', el).checked, activo: $('#ec-act', el).checked, nota: g('#ec-nota') || null,
+        cerrado: [...el.querySelectorAll('[data-cerr]')].filter(x => x.checked).map(x => +x.dataset.cerr), comercial: g('#ec-rep') || null, dia: +g('#ec-dia') || null };
+      if (!patch.nombre) { $('#ec-err', el).textContent = 'Escribe el nombre del cliente.'; return; }
+      const m = g('#ec-coord').match(/(-?\d+(?:[.,]\d+)?)\s*[,; ]\s*(-?\d+(?:[.,]\d+)?)/);
+      const prevCoord = isFinite(c.lat) ? c.lat + ', ' + c.lng : '';
+      if (m && g('#ec-coord') !== prevCoord) { Object.assign(patch, { lat: +m[1].replace(',', '.'), lng: +m[2].replace(',', '.'), prec: 'exacta' }); }
+      else if (!isFinite(c.lat) || (patch.cp !== String(c.cp || '') || patch.pob !== (c.pob || '')) && c.prec !== 'exacta') { const geo = geoFromCP(patch.cp, patch.pob); if (geo) Object.assign(patch, geo); else if (!isFinite(c.lat)) { $('#ec-err', el).textContent = 'No encuentro ese código postal en Cantabria. Pega las coordenadas de Google Maps.'; return; } }
+      if (isNew) {
+        let id = g('#ec-id') || ('N' + Date.now().toString(36).toUpperCase());
+        if (S.clients.some(x => String(x.id) === id)) { $('#ec-err', el).textContent = 'Ya existe un cliente con ese código.'; return; }
+        c.id = isFinite(+id) && id !== '' ? +id : id; c._doc = 'c' + String(id).replace(/[^A-Za-z0-9_-]/g, '');
+        if ($('#ec-auto', el).checked && !patch.fijado) { const b = Engine.bestSlot({ ...c, ...patch }, S.clients, cfgFull()); if (b) { patch.comercial = b.rep; patch.dia = b.day; } }
+        patch.desfase = 0; S.clients.push(c);
+      }
+      saveClient(c, patch); closeDrawer(); render(); toast(isNew ? `Cliente añadido${patch.comercial ? ' a ' + repName(patch.comercial) + ', ' + DIAS[patch.dia] : ''}` : 'Cliente guardado');
+    };
+  });
+}
+async function importExcel(file) {
+  if (!file) return;
+  if (!window.XLSX) { toast('No se ha podido cargar el lector de Excel'); return; }
+  try {
+    const wb = XLSX.read(await file.arrayBuffer());
+    const ws = wb.Sheets['Clientes'] || wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
+    const hdr = rows[0].map(h => String(h || '').trim().toLowerCase());
+    const col = n => hdr.findIndex(h => h.startsWith(n));
+    const ci = { id: col('código'), nom: col('nombre'), raz: col('razón'), tipo: col('tipo'), dir: col('dirección'), cp: col('cp'), pob: col('población'), prov: col('provincia'), tel: col('teléfono'), mov: col('móvil'), mail: col('correo'), nota: col('nota') };
+    const existing = new Set(S.clients.map(c => String(c.id)));
+    const nuevos = [];
+    for (const r of rows.slice(1)) {
+      if (r[ci.id] == null) continue;
+      if (String(r[ci.tipo] || '').trim() !== 'Empresa' || String(r[ci.prov] || '').trim() !== 'Cantabria') continue;
+      if (existing.has(String(r[ci.id]))) continue;
+      const c = { id: r[ci.id], nombre: String(r[ci.nom] || '').trim(), razon: String(r[ci.raz] || '').trim(), dir: String(r[ci.dir] || '').trim(), cp: String(r[ci.cp] || ''), pob: String(r[ci.pob] || '').trim(), tel: r[ci.tel] || r[ci.mov] || null, email: r[ci.mail] || null, nota: r[ci.nota] || null, frecuencia: 1, llamarEntreVisitas: true, activo: true, cerrado: [], fijado: false, desfase: 0 };
+      const geo = geoFromCP(c.cp, c.pob); if (geo) Object.assign(c, geo);
+      const nota = String(c.nota || '').toLowerCase(); [['lunes', 1], ['martes', 2], ['miércoles', 3], ['jueves', 4], ['viernes', 5]].forEach(([w, d]) => { if (nota.includes(w + ' cerrado') || nota.includes('cerrado ' + w)) c.cerrado.push(d); });
+      nuevos.push(c);
+    }
+    if (!nuevos.length) { toast('No hay clientes empresa de Cantabria nuevos en el archivo'); return; }
+    const cfg = cfgFull(); const pool = S.clients.slice();
+    for (const c of nuevos) { if (isFinite(c.lat)) { const b = Engine.bestSlot(c, pool, cfg); if (b) { c.comercial = b.rep; c.dia = b.day; } } c._doc = 'c' + String(c.id).replace(/[^A-Za-z0-9_-]/g, ''); pool.push(c); }
+    openDrawer(`<div class="stack"><h2>${nuevos.length} clientes nuevos</h2><p class="small muted">Solo se añaden clientes empresa de Cantabria con un código que aún no existe. Cada uno va al comercial y día que menos tiempo añade a la ruta.</p>
+      <table><tbody>${nuevos.map(c => `<tr><td><b>${esc(c.nombre)}</b><div class="small muted">${esc(c.pob)}</div></td><td class="small">${c.comercial ? esc(repName(c.comercial)) + ' · ' + DIAS[c.dia] : '<span class="chip warn">Sin ubicación</span>'}</td></tr>`).join('')}</tbody></table>
+      <div class="row"><button class="btn primary" id="imp-ok">Añadir ${nuevos.length} clientes</button><button class="btn" data-close>Cancelar</button></div></div>`, el => {
+      $('#imp-ok', el).onclick = async () => { $('#imp-ok', el).disabled = true; for (const c of nuevos) { S.clients.push(c); await saveClient(c, {}); } closeDrawer(); render(); toast(nuevos.length + ' clientes añadidos'); };
+    });
+  } catch (e) { toast('No se ha podido leer el archivo: ' + (e.message || e)); }
+}
+function csv(rows) { return '﻿' + rows.map(r => r.map(v => { v = v == null ? '' : String(v); return /[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(';')).join('\r\n'); }
+async function offer(filename, text, type = 'text/csv;charset=utf-8') {
+  const blob = new Blob([text], { type });
+  if (S.dl) { try { await S.dl.save({ filename, data: blob }); } catch (e) { if (e?.code !== 'declined') toast('Descarga no completada'); } return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+async function seedInicial() {
+  const b = $('#seed-go'); if (b) b.disabled = true;
+  if (!S.cfgLoaded || !S.cfg.comerciales) { S.cfg = structuredClone(DATOS_INICIALES.config); }
+  await queue(() => S.db.doc('config/general').set(structuredClone(DATOS_INICIALES.config)));
+  let i = 0; for (const c of DATOS_INICIALES.clientes) { await S.db.doc('clientes/c' + c.id).set(c); if (b && ++i % 10 === 0) b.textContent = 'Cargando ' + i + '/' + DATOS_INICIALES.clientes.length; }
+  toast('Clientes cargados');
+}
+async function backupExport() {
+  let data;
+  if (S.db.dump) data = S.db.dump();
+  else { data = { 'config/general': S.cfg }; for (const c of S.clients) { const { _doc, ...b } = c; data['clientes/' + (_doc || 'c' + c.id)] = b; } data['semanas/' + wkey()] = S.week; }
+  offer('rutas-copia-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify({ tipo: 'rutas-comerciales', fecha: new Date().toISOString(), datos: data }, null, 1), 'application/json');
+}
+async function backupImport(file) {
+  if (!file) return;
+  try {
+    const j = JSON.parse(await file.text()); if (j.tipo !== 'rutas-comerciales' || !j.datos) throw new Error('No es una copia de este planificador');
+    if (S.db.load) S.db.load(j.datos);
+    else { for (const [k, v] of Object.entries(j.datos)) await S.db.doc(k).set(v); }
+    toast('Copia restaurada');
+  } catch (e) { toast('No se ha podido restaurar: ' + e.message); }
+}
+function exportClients() {
+  const rows = [['Código', 'Nombre', 'Dirección', 'CP', 'Población', 'Comercial', 'Día', 'Frecuencia', 'Llamar entre visitas', 'Duración min', 'Cierra', 'Fijado', 'Activo', 'Lat', 'Lng', 'Precisión', 'Teléfono', 'Nota']];
+  for (const c of S.clients) rows.push([c.id, c.nombre, c.dir, c.cp, c.pob, repName(c.comercial), c.dia ? DIAS[c.dia] : '', freqLabel(c.frecuencia), c.llamarEntreVisitas !== false ? 'Sí' : 'No', c.dur || cfgFull().durVisita, (c.cerrado || []).map(d => DIAS[d]).join(' '), c.fijado ? 'Sí' : 'No', c.activo !== false ? 'Sí' : 'No', c.lat, c.lng, c.prec, c.tel, c.nota]);
+  offer('clientes-rutas.csv', csv(rows));
+}
+function exportWeek(plan) {
+  const rows = [['Semana', 'Comercial', 'Día', 'Fecha', 'Orden', 'Tipo', 'Hora llegada', 'Hora salida', 'Cliente', 'Dirección', 'Población', 'Teléfono', 'Km tramo']];
+  for (const r of S.cfg.comerciales) for (let d = 1; d <= 5; d++) {
+    const s = plan.slots[r.id + '|' + d]; let i = 0;
+    for (const it of s.seq) if (!it.pausa) rows.push([wkey(), r.nombre, DIAS[d], dateOf(d).toLocaleDateString('es-ES'), ++i, 'Visita', it.llegada, it.salida, it.stop.nombre, it.stop.dir, it.stop.pob, it.stop.tel, it.km.toFixed(1)]);
+    for (const c of s.llamadas) rows.push([wkey(), r.nombre, DIAS[d], dateOf(d).toLocaleDateString('es-ES'), '', 'Llamada', '', '', c.nombre, c.dir, c.pob, c.tel, '']);
+  }
+  offer('rutas-' + wkey() + '.csv', csv(rows));
+}
+
+// ---------- Reparto ----------
+function renderReparto() {
+  const v = $('#v-reparto'); const cfg = cfgFull();
+  const cur = cycleSummary(S.clients, cfg);
+  const n = S.simN || cfg.comerciales.length;
+  let html = `<div class="row" style="justify-content:space-between"><h2>Reparto de clientes</h2></div>
+  <div class="split"><div class="panel stack"><h3>Reparto actual</h3>
+    <div class="legend">${cfg.comerciales.map(r => `<span class="row" style="gap:6px"><span class="dot" style="background:${repColor(r.id)}"></span>${esc(r.nombre)}</span>`).join('')}</div>
+    <div class="map">${mapSvg({ all: S.clients.filter(c => c.activo !== false) })}</div></div>
+    <div class="panel stack"><h3>Carga media semanal</h3><p class="small muted">Media de 4 semanas, para que cuenten las visitas cada 2 y cada 4 semanas.</p>
+    <table class="cmp"><thead><tr><th>Comercial</th><th class="num">Visitas</th><th class="num">Km</th><th class="num">Horas</th></tr></thead><tbody>
+    ${cfg.comerciales.map(r => { const p = cur.per[r.id] || { n: 0, v: 0, km: 0, h: 0 }; return `<tr><td><span class="dot" style="background:${repColor(r.id)}"></span> ${esc(r.nombre)}</td><td class="num mono">${p.v.toFixed(1)}</td><td class="num mono">${Math.round(p.km)}</td><td class="num mono">${p.h.toFixed(1)}</td></tr>`; }).join('')}
+    <tr><td><b>Total</b></td><td class="num mono"><b>${cur.v.toFixed(1)}</b></td><td class="num mono"><b>${Math.round(cur.km)}</b></td><td class="num mono"><b>${cur.h.toFixed(1)}</b></td></tr></tbody></table>
+    <h3>Proponer un reparto nuevo</h3>
+    <p class="small muted">Agrupa a los clientes por zonas, reparte la carga entre comerciales y días, evita los días de cierre y respeta los clientes fijados. Puedes simular con más o menos comerciales antes de aplicar.</p>
+    <div class="row"><label class="f">Comerciales<input type="number" id="rp-n" min="1" max="6" value="${n}"></label>
+      <label class="row small"><input type="checkbox" id="rp-fij" checked> Respetar clientes fijados</label>
+      <button class="btn primary" id="rp-go">Calcular propuesta</button></div>
+    <div id="rp-res"></div></div></div>`;
+  v.innerHTML = html;
+  $('#rp-n').onchange = e => { S.simN = Math.max(1, Math.min(6, +e.target.value || 1)); };
+  $('#rp-go').onclick = () => {
+    const N = Math.max(1, Math.min(6, +$('#rp-n').value || 1));
+    const reps = []; for (let i = 0; i < N; i++) reps.push(cfg.comerciales[i] || { id: 'c' + (i + 1) + '-' + Date.now().toString(36).slice(-3), nombre: 'Comercial ' + (i + 1), nuevo: true });
+    const cfgN = { ...cfg, comerciales: reps };
+    const work = S.clients.map(c => ({ ...c }));
+    $('#rp-res').innerHTML = '<p class="small muted">Calculando…</p>';
+    setTimeout(() => {
+      const p = Engine.propose(work, cfgN, { respetarFijados: $('#rp-fij').checked });
+      work.forEach(c => { const a = p.assign.get(c.id); if (a) { c.comercial = a.rep; c.dia = a.day; c.desfase = p.desfase.has(c.id) ? p.desfase.get(c.id) : (c.desfase || 0); } });
+      const prop = cycleSummaryWith(work, cfgN);
+      const moved = work.filter(c => { const o = S.clients.find(x => x.id === c.id); return o && (o.comercial !== c.comercial || o.dia !== c.dia); }).length;
+      S.propuesta = { work, cfgN };
+      const d = (a, b, u) => { const x = b - a; return `<span class="chip ${x < 0 ? 'ok' : x > 0 ? 'warn' : ''}">${x > 0 ? '+' : ''}${u === 'h' ? x.toFixed(1) : Math.round(x)} ${u}</span>`; };
+      $('#rp-res').innerHTML = `<div class="stack"><table class="cmp"><thead><tr><th></th><th class="num">Actual</th><th class="num">Propuesta</th><th class="num">Diferencia</th></tr></thead><tbody>
+        <tr><td>Km por semana</td><td class="num mono">${Math.round(cur.km)}</td><td class="num mono">${Math.round(prop.km)}</td><td class="num">${d(cur.km, prop.km, 'km')}</td></tr>
+        <tr><td>Horas en ruta por semana</td><td class="num mono">${cur.h.toFixed(1)}</td><td class="num mono">${prop.h.toFixed(1)}</td><td class="num">${d(cur.h, prop.h, 'h')}</td></tr>
+        <tr><td>Minutos fuera de horario</td><td class="num mono">${Math.round(cur.ex)}</td><td class="num mono">${Math.round(prop.ex)}</td><td class="num">${d(cur.ex, prop.ex, 'min')}</td></tr>
+        ${reps.map(r => { const q = prop.per[r.id] || { n: 0, h: 0, km: 0 }; return `<tr><td><span class="dot" style="background:${REP_COLORS[reps.indexOf(r) % 6]}"></span> ${esc(r.nombre)}</td><td></td><td class="num mono">${q.h.toFixed(1)} h · ${Math.round(q.km)} km</td><td></td></tr>`; }).join('')}
+        </tbody></table>
+        <p class="small muted">${moved} clientes cambian de comercial o de día.${N !== cfg.comerciales.length ? ` Al aplicar, el equipo pasa a ${N} comerciales.` : ''}</p>
+        <div class="row"><button class="btn primary" id="rp-apply">Aplicar propuesta</button><button class="btn" id="rp-cancel">Descartar</button></div></div>`;
+      $('#rp-cancel').onclick = () => { S.propuesta = null; $('#rp-res').innerHTML = ''; };
+      $('#rp-apply').onclick = applyPropuesta;
+    }, 30);
+  };
+}
+function cycleSummaryWith(clients, cfg) { return cycleSummary(clients, cfg); }
+async function applyPropuesta() {
+  const p = S.propuesta; if (!p) return; const btn = $('#rp-apply'); btn.disabled = true;
+  if (p.cfgN.comerciales.length !== S.cfg.comerciales.length) { S.cfg.comerciales = p.cfgN.comerciales.map(({ nuevo, ...r }) => r); await saveCfg(); }
+  let i = 0;
+  for (const w of p.work) {
+    const c = S.clients.find(x => x.id === w.id); if (!c) continue;
+    if (c.comercial !== w.comercial || c.dia !== w.dia || (c.desfase || 0) !== (w.desfase || 0)) { await saveClient(c, { comercial: w.comercial, dia: w.dia, desfase: w.desfase || 0 }); }
+    if (++i % 10 === 0) btn.textContent = 'Guardando ' + i + '/' + p.work.length;
+  }
+  S.propuesta = null; render(); toast('Reparto aplicado');
+}
+
+// ---------- Ajustes ----------
+function renderAjustes() {
+  const v = $('#v-ajustes'); const c = cfgFull();
+  const num = (id, val, label, step = 1) => `<label class="f">${label}<input type="number" id="${id}" value="${val}" step="${step}"></label>`;
+  v.innerHTML = `<h2>Ajustes</h2>
+  <div class="split"><div class="panel stack"><h3>Comerciales</h3>
+    <div id="aj-reps" class="stack">${S.cfg.comerciales.map((r, i) => `<div class="row"><span class="dot" style="background:${repColor(r.id)}"></span><input data-rep="${r.id}" value="${esc(r.nombre)}" style="flex:1" aria-label="Nombre del comercial">${S.cfg.comerciales.length > 1 ? `<button class="btn sm ghost" data-del="${r.id}">Quitar</button>` : ''}</div>`).join('')}</div>
+    <div class="row"><button class="btn" id="aj-add">Añadir comercial</button></div>
+    <p class="small muted">Al quitar un comercial, sus clientes quedan sin asignar. Usa Reparto para redistribuirlos.</p>
+    <h3>Nave (punto de salida y vuelta)</h3>
+    <label class="f">Nombre<input id="aj-nn" value="${esc(c.nave.nombre)}"></label>
+    <label class="f">Coordenadas (pega "lat, lng" de Google Maps)<input id="aj-nc" value="${c.nave.lat}, ${c.nave.lng}"></label>
+    <h3>Copia de seguridad</h3>
+    <p class="small muted">Descarga todos los datos (clientes, reparto, cambios de semanas y ajustes) en un archivo, o restaura una copia anterior.</p>
+    <div class="row"><button class="btn" id="bk-exp">Descargar copia</button><label class="btn" for="bk-imp">Restaurar copia</label><input type="file" id="bk-imp" accept=".json" hidden></div>
+    </div>
+  <div class="panel stack"><h3>Jornada</h3>
+    <div class="row"><label class="f">Salida<input type="time" id="aj-sal" value="${c.salida}"></label><label class="f">Vuelta máxima<input type="time" id="aj-fin" value="${c.fin}"></label></div>
+    <div class="row"><label class="row small"><input type="checkbox" id="aj-com" ${c.comida.activa ? 'checked' : ''}> Pausa para comer</label><label class="f">Desde<input type="time" id="aj-ci" value="${c.comida.inicio}"></label>${num('aj-cm', c.comida.minutos, 'Minutos')}</div>
+    <h3>Tiempos por parada</h3>
+    <div class="row">${num('aj-dv', c.durVisita, 'Visita (min)')}${num('aj-dl', c.durLlamada, 'Llamada (min)')}${num('aj-ap', c.minAparcar, 'Aparcar / entrar (min)')}</div>
+    <h3>Cálculo de trayectos</h3>
+    <p class="small muted">Los km por carretera se estiman como la distancia en línea recta por un factor. Si los tiempos reales salen más largos, sube el factor de tráfico.</p>
+    <div class="row">${num('aj-fc', c.factorCarretera, 'Factor carretera', .05)}${num('aj-ft', c.factorTrafico, 'Factor tráfico', .05)}</div>
+    <div class="row">${num('aj-vu', c.velUrbana, 'Vel. ciudad km/h')}${num('aj-vc', c.velCarretera, 'Vel. carretera km/h')}${num('aj-va', c.velAutovia, 'Vel. autovía km/h')}</div>
+    <div class="row"><button class="btn primary" id="aj-save">Guardar ajustes</button></div></div></div>`;
+  v.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => { const id = b.dataset.del; S.cfg.comerciales = S.cfg.comerciales.filter(r => r.id !== id); await saveCfg(); for (const cl of S.clients.filter(x => x.comercial === id)) await saveClient(cl, { comercial: null, fijado: false }); render(); });
+  $('#bk-exp').onclick = backupExport; $('#bk-imp').onchange = e => backupImport(e.target.files[0]);
+  $('#aj-add').onclick = () => { const n = S.cfg.comerciales.length + 1; S.cfg.comerciales.push({ id: 'c' + n + '-' + Date.now().toString(36).slice(-4), nombre: 'Comercial ' + n }); saveCfg(); render(); };
+  $('#aj-save').onclick = () => {
+    const g = id => $(id).value; const nc = g('#aj-nc').match(/(-?\d+(?:\.\d+)?)\s*[,; ]\s*(-?\d+(?:\.\d+)?)/);
+    v.querySelectorAll('[data-rep]').forEach(i => { const r = S.cfg.comerciales.find(x => x.id === i.dataset.rep); if (r) r.nombre = i.value.trim() || r.nombre; });
+    Object.assign(S.cfg, { salida: g('#aj-sal'), fin: g('#aj-fin'), comida: { activa: $('#aj-com').checked, inicio: g('#aj-ci'), minutos: +g('#aj-cm') || 0 },
+      durVisita: +g('#aj-dv') || 30, durLlamada: +g('#aj-dl') || 10, minAparcar: +g('#aj-ap') || 0, factorCarretera: +g('#aj-fc') || 1.3, factorTrafico: +g('#aj-ft') || 1,
+      velUrbana: +g('#aj-vu') || 22, velCarretera: +g('#aj-vc') || 60, velAutovia: +g('#aj-va') || 85,
+      nave: { nombre: g('#aj-nn'), lat: nc ? +nc[1] : c.nave.lat, lng: nc ? +nc[2] : c.nave.lng } });
+    saveCfg(); render();
+  };
+}
+
+document.querySelectorAll('nav [data-tab]').forEach(b => b.onclick = () => { S.tab = b.dataset.tab; try { localStorage.setItem('rc_tab', S.tab); } catch (e) {} render(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+render();
+connect();
+</script>
+
+</body>
+</html>
